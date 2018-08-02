@@ -1,2 +1,11 @@
 language: C
 sudo: false
+
+branches:
+  except:
+  - gh-pages
+
+script:
+  - chmod +x ./deploy.sh
+  - ./deploy.sh
+
