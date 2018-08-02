@@ -10,6 +10,7 @@ git config --global user.name "wlandau"
 git clone -b gh-pages https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
 make
 mv README.md gh-pages
+ls *.zip > gh-pages/examples.md
 mv *.zip gh-pages
 cd gh-pages
 git add --all README.md *.zip
