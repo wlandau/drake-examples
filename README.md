@@ -17,6 +17,10 @@ list.files()
 #> [1] "main"
 ```
 
+# Contributing
+
+This repository is part of an effort to collect, curate, and share publicly available examples of [`drake`](https://github.com/ropensci/drake)-powered projects. Please feel free to discuss on the [issue tracker](https://github.com/wlandau/drake-examples/issues) and submit [pull requests](https://github.com/wlandau/drake-examples/pulls) to add new examples and update old ones. The environment for collaboration should be friendly, inclusive, respectful, and safe for everyone, so all participants must obey [this repository's code of conduct](https://github.com/wlandau/drake-examples/blob/master/CONDUCT.md).
+
 # Introductory examples
 
 - `main`: `drake`'s main example, based on [Kirill Müller's `drake` pitch](https://krlmlr.github.io/drake-pitch/). This is the most accessible example for beginners.
