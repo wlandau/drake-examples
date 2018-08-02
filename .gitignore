@@ -21,7 +21,6 @@ Thumbs.db
 .RData
 .Rhistory
 .Rproj.user
-Makefile
 Rbuildignore/*.pdf
 Rbuildignore/local/
 README.html
