@@ -11,6 +11,7 @@ git clone -b gh-pages https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git g
 make
 mv *.zip gh-pages
 cd gh-pages
-git add --all *.zip
+echo "https://github.com/wlandau/drake-examples" > README.md
+git add --all README.md *.zip
 git commit -m "Update example archives" || true
 git push -q origin gh-pages
