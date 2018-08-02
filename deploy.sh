@@ -13,6 +13,6 @@ mv README.md gh-pages
 ls *.zip > gh-pages/examples.md
 mv *.zip gh-pages
 cd gh-pages
-git add --all README.md *.zip
+git add --all *.md *.zip
 git commit -m "Update example archives" || true
 git push -q origin gh-pages
