@@ -1,6 +1,6 @@
 # `drake` examples
 
-This repo is a collection of example workflows powered by the [`drake` R package](https://github.com/ropensci/drake). Each folder is its own example with a self-sufficient set of code and data files. Eventually, you will be able to download individual examples using [`drake`](https://github.com/ropensci/drake) itself.
+This repository is part of a community effort to collect, curate, and share publicly available examples of data analysis projects powered by the  [`drake` R package](https://github.com/ropensci/drake). Each folder is its own example with a self-sufficient set of code and data files. Eventually, you will be able to download individual examples using [`drake`](https://github.com/ropensci/drake) itself.
 
 ```r
 # Install and load drake.
@@ -19,7 +19,7 @@ list.files()
 
 # Contributing
 
-This repository is part of a community effort to collect, curate, and share publicly available examples of [`drake`](https://github.com/ropensci/drake)-powered projects. Please feel free to discuss on the [issue tracker](https://github.com/wlandau/drake-examples/issues) and submit [pull requests](https://github.com/wlandau/drake-examples/pulls) to add new examples and update old ones. The environment for collaboration should be friendly, inclusive, respectful, and safe for everyone, so all participants must obey [this repository's code of conduct](https://github.com/wlandau/drake-examples/blob/master/CONDUCT.md).
+ Please feel free to discuss on the [issue tracker](https://github.com/wlandau/drake-examples/issues) and submit [pull requests](https://github.com/wlandau/drake-examples/pulls) to add new examples and update old ones. The environment for collaboration should be friendly, inclusive, respectful, and safe for everyone, so all participants must obey [this repository's code of conduct](https://github.com/wlandau/drake-examples/blob/master/CONDUCT.md).
 
 # Introductory examples
 
