@@ -9,6 +9,7 @@ fit_gsp_model <- function(..., data){
     as.formula() %>%
     lm(data = data)  
 }
+# fit_gsp_model("state", "year", "pcap") # nolint
 
 # We need to define a function to get the
 # root mean squared prediction error.
