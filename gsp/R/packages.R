@@ -2,7 +2,10 @@
 
 library(drake)
 library(Ecdat) # econometrics datasets
-library(knitr)
 library(ggplot2)
+library(knitr)
+library(magrittr) # for the pipe operator %>%
+library(purrr)
+library(rlang)
 
 pkgconfig::set_config("drake::strings_in_dots" = "literals")

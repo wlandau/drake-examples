@@ -1,6 +1,15 @@
 # This file contains all the functions of the workflow.
 # If needed, you could split it up into multiple files.
 
+# Fit a model given a bunch of covarites and data
+fit_gsp_model <- function(..., data){
+  c(...) %>%
+    paste(collapse = " + ") %>%
+    paste("gsp ~", .) %>%
+    as.formula() %>%
+    lm(data = data)  
+}
+
 # We need to define a function to get the
 # root mean squared prediction error.
 get_rmspe <- function(lm_fit, data){

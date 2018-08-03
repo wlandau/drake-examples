@@ -16,15 +16,38 @@ head(combos)
 # We generate the plan in stages.
 
 # First, we apply the models to the datasets.
+# We make a separate `drake` plan for this purpose.
+# Let's start by making the target names
 targets <- apply(combos, 1, paste, collapse = "_")
+head(targets)
 
-commands <- apply(combos, 1, function(row){
-  covariates <- paste(row, collapse = " + ")
-  formula <- paste0("as.formula(\"gsp ~ ", covariates, "\")")
-  command <- paste0("lm(", formula, ", data = Produc)")
-})
+# Now, let's make the commands.
+# Our custom make_gsp_model_call() function
+# constructs a function call to fit_gsp_model()
+# given a list of arguments. We defined the
+# fit_gsp_model() function 
+make_gsp_model_call <- function(args){
+  args$data = quote(Produc)
+  quote(fit_gsp_model) %>%
+    c(args) %>%
+    as.call() %>%
+    rlang::expr_text()
+}
+make_gsp_model_call(list("state", "year", "pcap"))
 
-model_plan <- data.frame(target = targets, command = commands)
+commands <- as.data.frame(combos, stringsAsFactors = FALSE) %>%
+  purrr::pmap(list) %>%
+  purrr::map_chr(make_gsp_model_call)
+head(commands)
+
+# We create the model-fitting part of our plan
+# by combining the targets and commands together in a data frame.
+model_plan <- data.frame(
+  target = targets,
+  command = commands,
+  stringsAsFactors = FALSE
+)
+head(model_plan)
 
 # Judge the models based on the root mean squared prediction error (RMSPE)
 commands <- paste0("get_rmspe(", targets, ", data = Produc)")
