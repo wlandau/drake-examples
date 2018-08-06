@@ -1,5 +1,4 @@
 Docker-psock.zip
-gh-pages.zip
 gsp.zip
 lfs.zip
 main.zip
