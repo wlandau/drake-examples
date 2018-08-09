@@ -37,3 +37,7 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 - `sge`: uses `drake`'s high-performance computing functionality to send work to a [Grid Engine](http://www.univa.com/products/) cluster.
 - `slurm`: similar to `sge`, but for [SLURM](https://slurm.schedmd.com).
 - `torque`: similar to `sge`, but for [TORQUE](http://www.adaptivecomputing.com/products/open-source/torque/).
+
+# Development examples
+
+- `overhead`: an example explicitly designed to maximize strain on `drake`'s internals. The purpose is to support profiling studies to speed up `drake`.

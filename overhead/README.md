@@ -1,0 +1,1 @@
+This example is explicitly designed to support profiling studies to make `drake` faster and more efficient. The workflow has `2n` targets, each with `n` dependencies. Increasing `n` up to 1000 puts heavy strain on the internals and dramatically increases runtime and cache size. Going forward, we want to make `drake` fast for this sort of task.
