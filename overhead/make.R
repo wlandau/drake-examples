@@ -17,4 +17,4 @@ for (i in seq_len(n - 1) + 1){
   command <- paste0("max(", paste0(dependencies, collapse = ", "), ")")
   plan <- rbind(plan, data.frame(target = target, command = command))
 }
-make(plan)
+make(plan, verbose = 4)
