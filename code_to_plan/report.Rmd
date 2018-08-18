@@ -9,28 +9,28 @@ Visit https://ropenscilabs.github.io/drake-manual/plans.html to learn about work
 
 You can use a `knitr` report with code chunks to create a `drake` plan. Here is a target and its command.
 
-```{r t}
-t <- rnorm(10)
+```{r chunk}
+data1 <- rnorm(10)
 ```
 
 You can use various assignment operators.
 
-```{r u}
-u <<- rnorm(10)
+```{r names}
+data2 <<- rnorm(20)
 ```
 
 Assignment operators can go either way.
 
-```{r vw}
-rnorm(10) -> v
-rnorm(10) ->> w
+```{r are}
+mean(data1) -> summary1
+median(data2) ->> summary2
 ```
 
 You can assign triggers, etc. in the same way you would in `drake_plan()`.
 
-```{r x}
-x <- target(
-  command = c((sqrt(5) + 1) / 2, (sqrt(5) - 1) / 2),
+```{r not}
+discrepancy <- target(
+  command = summary2 - summary1,
   trigger = trigger(condition = TRUE),
   timeout = 100
 )
@@ -38,11 +38,11 @@ x <- target(
 
 But each target can take only one expression as its command. Please enclose multiple lines in curly braces.
 
-```{r yz}
-y = {
+```{r important}
+sum1 = {
   tmp <- 0
   for (i in 1:10){
-    tmp <- tmp + w + x
+    tmp <- tmp + data1[i]
   }
   tmp
 }
@@ -50,14 +50,14 @@ y = {
 {
   tmp <- 0
   for (i in 1:10){
-    tmp <- tmp + x + y
+    tmp <- tmp + data2[i]
   }
   tmp
-} -> z
+} -> sum2
 ```
 
 Unevaluated/inactive code chunks are ignored.
 
-```{r end, eval = FALSE}
+```{r here, eval = FALSE}
 print("not run")
 ```

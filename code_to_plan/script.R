@@ -4,22 +4,23 @@
 # Visit https://ropenscilabs.github.io/drake-manual/plans.html
 # to learn about workflow plan data frames in drake.
 
-t <- rnorm(10)
+data1 <- rnorm(10)
 
 # You can use various assignment operators.
 
-u <<- rnorm(10)
+data2 <<- rnorm(20)
 
 # Assignment operators can go either way.
 
-rnorm(10) -> v
+mean(data1) -> summary1
 
-rnorm(10) ->> w
+median(data2) ->> summary2
 
 # You can assign triggers, etc. in the same way you would in `drake_plan()`.
+# The following target will always build.
 
-x <- target(
-  command = c((sqrt(5) + 1) / 2, (sqrt(5) - 1) / 2),
+discrepancy <- target(
+  command = summary2 - summary1,
   trigger = trigger(condition = TRUE),
   timeout = 100
 )
@@ -27,10 +28,10 @@ x <- target(
 # But each target can take only one expression as its command.
 # Please enclose multiple lines in curly braces.
 
-y = {
+sum1 = {
   tmp <- 0
   for (i in 1:10){
-    tmp <- tmp + w + x
+    tmp <- tmp + data1[i]
   }
   tmp
 }
@@ -38,7 +39,7 @@ y = {
 {
   tmp <- 0
   for (i in 1:10){
-    tmp <- tmp + x + y
+    tmp <- tmp + data2[i]
   }
   tmp
-} -> z
+} -> sum2
