@@ -15,4 +15,4 @@ print(identical(plan, plan2))
 make(plan)
 
 # Inspect the output
-readd(z)
+readd(discrepancy)
