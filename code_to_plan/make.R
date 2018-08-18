@@ -8,7 +8,8 @@ plan <- code_to_plan("script.R")
 print(plan)
 
 # The example R Markdown report returns the same plan.
-code_to_plan("report.Rmd")
+plan2 <- code_to_plan("report.Rmd")
+print(identical(plan, plan2))
 
 # Run the worklflow with make()
 make(plan)
