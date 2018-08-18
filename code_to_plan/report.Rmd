@@ -53,7 +53,7 @@ sum1 = {
     tmp <- tmp + data2[i]
   }
   tmp
-} -> sum2
+} ->> sum2
 ```
 
 Unevaluated/inactive code chunks are ignored.
