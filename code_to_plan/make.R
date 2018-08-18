@@ -3,9 +3,6 @@
 
 library(drake)
 
-# Get a worklflow plan data frame from quoted code.
-code_to_plan(quote(a <- 1))
-
 # Get a workflow plan data frame from an R script
 plan <- code_to_plan("script.R")
 print(plan)

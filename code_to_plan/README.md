@@ -1,4 +1,4 @@
-This example demonstrates `drake`'s `code_file_to_plan()` function, which can turn an R script, `knitr` / R Markdown report, or piece of quoted R code into a [workflow plan data frame](https://ropenscilabs.github.io/drake-manual/plans.html). In your script (or `knitr` / R Markdown code chunks, or quoted R code), you can assign expressions to variables, and `code_file_to_plan()` will turn them into commands and targets, respectively. The `make.R` script demonstrates how this works for the script `script.R` and the report `report.Rmd`. The `code_to_plan()` function is similar, but it accepts quoted code rather than a file.
+This example demonstrates `drake`'s `code_to_plan()` function, which can turn an R script or `knitr` / R Markdown report into a [workflow plan data frame](https://ropenscilabs.github.io/drake-manual/plans.html). In your script or `knitr` / R Markdown code chunks, you can assign expressions to variables, and `code_to_plan()` will turn them into commands and targets, respectively. The `make.R` script demonstrates how this works for the script `script.R` and the report `report.Rmd`.
 
 This feature is easy to break, so there are some rules:
 
