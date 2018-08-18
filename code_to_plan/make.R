@@ -3,9 +3,18 @@
 
 library(drake)
 
+# Get a worklflow plan data frame from quoted code.
+code_to_plan(quote(a <- 1))
+
 # Get a workflow plan data frame from an R script
+plan <- code_to_plan("script.R")
+print(plan)
+
+# The example R Markdown report returns the same plan.
+code_to_plan("report.Rmd")
 
 # Run the worklflow with make()
+make(plan)
 
 # Inspect the output
 readd(z)
