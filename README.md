@@ -41,3 +41,7 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 # Development examples
 
 - `overhead`: an example explicitly designed to maximize strain on `drake`'s internals. The purpose is to support profiling studies to speed up `drake`.
+
+# Demonstrations of specific features
+
+- `code_to_plan`: a demonstration of `drake`'s `code_to_plan()` function, which can turn ordinary quoted code, R scripts, and `knitr` / R Markdown reports into `drake` [workflow plan data frames](https://ropenscilabs.github.io/drake-manual/plans.html).
