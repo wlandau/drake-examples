@@ -17,7 +17,8 @@ mean(data1) -> summary1
 median(data2) ->> summary2
 
 # You can assign triggers, etc. in the same way you would in `drake_plan()`.
-# The following target will always build.
+# The following target always builds during `make()`
+# because of the `condition` trigger.
 
 discrepancy <- target(
   command = summary2 - summary1,
