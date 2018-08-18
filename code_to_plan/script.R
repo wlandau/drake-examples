@@ -1,6 +1,9 @@
 # You can use an R script to create a `drake` plan.
 # Here is a target and its command.
 
+# Visit https://ropenscilabs.github.io/drake-manual/plans.html
+# to learn about workflow plan data frames in drake.
+
 t <- rnorm(10)
 
 # You can use various assignment operators.

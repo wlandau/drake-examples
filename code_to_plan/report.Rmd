@@ -5,7 +5,7 @@ date: "August 18, 2018"
 output: html_document
 ---
 
-## R Markdown
+Visit https://ropenscilabs.github.io/drake-manual/plans.html to learn about workflow plan data frames in drake.
 
 You can use a `knitr` report with code chunks to create a `drake` plan. Here is a target and its command.
 
