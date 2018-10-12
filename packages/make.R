@@ -1,5 +1,5 @@
-# Run the code in each of the other R scripts in the R folder
-# You don't need interactive-tutorial.R, which is independent and separate.
+# See the full tutorial at
+# https://ropenscilabs.github.io/drake-manual/packages.html.
 
 source("R/packages.R")  # Load all the packages you need.
 source("R/functions.R") # Load all the functions into your environment.

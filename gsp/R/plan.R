@@ -8,53 +8,28 @@ head(Produc) # ?Produc
 predictors <- setdiff(colnames(Produc), "gsp")
 
 # We will try all combinations of three covariates.
-combos <- combn(predictors, 3) %>%
-  t() %>%
-  as.data.frame(stringsAsFactors = FALSE)
-head(combos)
+combos <- tibble::as_tibble(t(combn(predictors, 3)))
 
-# Use these combinations to generate
-# a workflow plan data frame for drake.
-# We generate the plan in stages.
+# We want a `combos` data frame with all the
+# arguments to `fit_gsp_model()`
+# The `data` argument to fit_gsp_model() is a symbol,
+# which could stand for a generic dataset or an upstream target.
+combos$data <- rlang::syms(rep("Produc", nrow(combos)))
 
-# First, we apply the models to the datasets.
-# We make a separate `drake` plan for this purpose.
-# Let's start by making the target names
-targets <- apply(combos, 1, paste, collapse = "_")
-head(targets)
+# Let's get some nice target names too.
+combos$id <- apply(combos, 1, paste, collapse = "_")
 
-# Each target will be a call to `fit_gsp_model()`
-# on 3 covariates.
-fit_gsp_model("unemp", "year", "pcap", data = Produc) %>%
-  summary()
-
-# So we will generate calls to `fit_gsp_model()`
-# as commands for the model-fitting part of the plan.
-make_gsp_model_call <- function(...){
-  args <- list(..., data = quote(Produc))
-  quote(fit_gsp_model) %>%
-    c(args) %>%
-    as.call() %>%
-    rlang::expr_text()
-}
-make_gsp_model_call("state", "year", "pcap", data = Produc)
-
-commands <- purrr::pmap_chr(combos, make_gsp_model_call)
-head(commands)
-
-# We create the model-fitting part of our plan
-# by combining the targets and commands together in a data frame.
-model_plan <- data.frame(
-  target = targets,
-  command = commands,
-  stringsAsFactors = FALSE
-)
-head(model_plan)
+# Now we make a drake plan: we plan to call
+# fit_gsp_model() iteratively for each row in `combos`.
+model_plan <- map_plan(combos, fit_gsp_model)
 
 # Judge the models based on the root mean squared prediction error (RMSPE)
-commands <- paste0("get_rmspe(", targets, ", data = Produc)")
-targets <- paste0("rmspe_", targets)
-rmspe_plan <- data.frame(target = targets, command = commands)
+rmspe_args <- tibble::tibble(
+  lm_fit = rlang::syms(model_plan$target),
+  data = rlang::syms(combos$data),
+  id = paste0("rmspe_", model_plan$target)
+)
+rmspe_plan <- map_plan(rmspe_args, get_rmspe)
 
 # Aggregate all the results together.
 rmspe_results_plan <- gather_plan(

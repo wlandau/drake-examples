@@ -1,5 +1,5 @@
-# Run the code in each of the other R scripts in the R folder
-# You don't need interactive-tutorial.R, which is independent and separate.
+# See the full tutorial at
+# https://ropenscilabs.github.io/drake-manual/gsp.html.
 
 source("R/packages.R")  # Load all the packages you need.
 source("R/functions.R") # Load all the functions into your environment.
@@ -10,7 +10,7 @@ ls()
 
 # Optionally plot the graph of your workflow.
 # config <- drake_config(whole_plan) # nolint
-# vis_drake_graph(config)         # nolint
+# vis_drake_graph(config)            # nolint
 
 # Now it is time to actually run your project.
 make(whole_plan) # Or make(whole_plan, jobs = 2), etc.
