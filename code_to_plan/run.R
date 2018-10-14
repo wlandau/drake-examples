@@ -1,18 +1,20 @@
 # Visit https://ropenscilabs.github.io/drake-manual/plans.html
 # to learn about workflow plan data frames in drake.
 
-# Let us begin wtih a drake plan supporting packages and functions.
-
+# Let's begin with the main example (drake_example("main")).
+# We have our supporting packages,
 library(drake)
 library(tidyverse)
 pkgconfig::set_config("drake::strings_in_dots" = "literals") # New file API
 
+# and functions,
 create_plot <- function(data) {
   ggplot(data, aes(x = Petal.Width, fill = Species)) +
     geom_histogram(binwidth = 0.25) +
     theme_gray(20)
 }
 
+# and drake plan.
 plan <- drake_plan(
   raw_data = readxl::read_excel(file_in("raw_data.xlsx")),
   data = raw_data %>%
@@ -27,16 +29,18 @@ plan <- drake_plan(
   )
 )
 
-# This plan is equivalent to following R script
+# Our plan is equivalent to following R script.
 plan_to_code(plan, "new_script.R")
+cat(readLines("new_script.R"), sep = "\n")
 
-# and the following notebook.
+# And the following notebook.
 plan_to_notebook(plan, "new_notebook.Rmd")
+cat(readLines("new_notebook.Rmd"), sep = "\n")
 
-# In drake, you build the targets by running the plan.
+# In drake, we build the targets by running the plan.
 make(plan)
 
-# This is the same as running new_script.R in your workspace.
+# This is the similar to running new_script.R in your workspace.
 source("new_script.R", local = TRUE)
 
 # Or running the notebook in your workspace.
