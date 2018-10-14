@@ -1,63 +1,20 @@
 ---
-title: "knitr report for a drake plan"
-author: "you"
-date: "August 18, 2018"
+title: "Example R Markdown drake file target"
+author: Will Landau and Kirill Müller
 output: html_document
 ---
 
-Visit https://ropenscilabs.github.io/drake-manual/plans.html to learn about workflow plan data frames in drake.
+Run `make.R` to generate the output `report.pdf` and its dependencies. Because we use `loadd()` and `readd()` below, `drake` knows `report.pdf` depends on targets `fit`, and `hist`.
 
-You can use a `knitr` report with code chunks to create a `drake` plan. Here is a target and its command.
-
-```{r chunk}
-data1 <- rnorm(10)
+```{r content}
+library(drake)
+loadd(fit)
+print(fit)
+readd(hist)
 ```
 
-You can use various assignment operators.
+More:
 
-```{r names}
-data2 <<- rnorm(20)
-```
-
-Assignment operators can go either way.
-
-```{r are}
-mean(data1) -> summary1
-median(data2) ->> summary2
-```
-
-You can assign triggers, etc. in the same way you would in `drake_plan()`. The following target always builds during `make()` because of the `condition` trigger.
-
-```{r not}
-discrepancy <- target(
-  command = summary2 - summary1,
-  trigger = trigger(condition = TRUE),
-  timeout = 100
-)
-```
-
-But each target can take only one expression as its command. Please enclose multiple lines in curly braces.
-
-```{r important}
-sum1 = {
-  tmp <- 0
-  for (i in 1:10){
-    tmp <- tmp + data1[i]
-  }
-  tmp
-}
-
-{
-  tmp <- 0
-  for (i in 1:10){
-    tmp <- tmp + data2[i]
-  }
-  tmp
-} ->> sum2
-```
-
-Unevaluated/inactive code chunks are ignored.
-
-```{r here, eval = FALSE}
-print("not run")
-```
+- Walkthrough: [this chapter of the user manual](https://ropenscilabs.github.io/drake-manual/intro.html)
+- Slides: [https://krlmlr.github.io/drake-pitch](https://krlmlr.github.io/drake-pitch)
+- Code: `drake_example("main")`
