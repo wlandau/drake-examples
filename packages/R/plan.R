@@ -50,9 +50,10 @@ output_types <- drake_plan(
 # each take turns substituting the `dataset__` wildcard.
 # Thus, `output_plan` has four rows.
 
-output_plan <- plan_analyses(
+output_plan <- evaluate_plan(
   plan = output_types,
-  datasets = data_plan
+  wildcard = "dataset__",
+  values = data_plan$target
 )
 
 # We plan to weave the results together
