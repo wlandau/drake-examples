@@ -65,7 +65,7 @@ report_plan <- drake_plan(
 
 # And we complete the workflow plan data frame by
 # concatenating the results together.
-# Drake analyzes the plan to figure out the dependency network,
+# drake analyzes the plan to figure out the dependency network,
 # so row order does not matter.
 
 whole_plan <- bind_plans(
