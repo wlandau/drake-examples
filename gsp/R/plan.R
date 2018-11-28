@@ -8,7 +8,9 @@ head(Produc) # ?Produc
 predictors <- setdiff(colnames(Produc), "gsp")
 
 # We will try all combinations of three covariates.
-combos <- tibble::as_tibble(t(combn(predictors, 3)))
+combos <- t(combn(predictors, 3))
+colnames(combos) <- c("V1", "V2", "V3")
+combos <- tibble::as_tibble(combos)
 
 # We want a `combos` data frame with all the
 # arguments to `fit_gsp_model()`
