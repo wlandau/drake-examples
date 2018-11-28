@@ -50,9 +50,10 @@ output_types <- drake_plan(
 # each take turns substituting the `dataset__` wildcard.
 # Thus, `output_plan` has four rows.
 
-output_plan <- plan_analyses(
+output_plan <- evaluate_plan(
   plan = output_types,
-  datasets = data_plan
+  wildcard = "dataset__",
+  values = data_plan$target
 )
 
 # We plan to weave the results together
@@ -64,7 +65,7 @@ report_plan <- drake_plan(
 
 # And we complete the workflow plan data frame by
 # concatenating the results together.
-# Drake analyzes the plan to figure out the dependency network,
+# drake analyzes the plan to figure out the dependency network,
 # so row order does not matter.
 
 whole_plan <- bind_plans(
