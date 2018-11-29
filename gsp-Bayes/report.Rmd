@@ -1,5 +1,5 @@
 ---
-title: "Results report: Bayesian regression and gross state products"
+title: "Results report: Bayesian regression models of gross state product"
 author: "William Michael Landau"
 output: html_document
 ---
@@ -8,6 +8,7 @@ This report summarizes the results of a data analysis workflow. Here, we model g
 
 ```{r setup}
 library(drake)
+library(gridExtra)
 ```
 
 ```{r data}
@@ -16,6 +17,6 @@ readd(dataset)
 
 ```{r plots}
 loadd(plots)
-plots
+plot(plots)
 ```
 

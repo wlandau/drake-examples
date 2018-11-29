@@ -8,11 +8,6 @@ prepare_dataset <- function() {
     as_tibble()
 }
 
-fit_and_plot <- function(covariate, dataset) {
-  fit_model(covariate, dataset) %>%
-    plot_model(covariate, dataset)
-}
-
 # Fit a Bayesian regression model of gross state product
 # using the rstanarm package.
 # Since we are running Markov chain Monte Carlo,
@@ -22,19 +17,19 @@ fit_model <- function(covariate, dataset) {
     formula = as.formula(paste("gsp ~", covariate)),
     data = dataset,
     family = gaussian(link = "identity"),
-    iter = 1e4, # Change the number of iterations to vary runtime.
+    iter = 1e3, # Change the number of iterations to vary runtime.
     refresh = 0,
     show_messages = FALSE
   )
 }
 
-# Plot a fitted Bayesian regression model
-# along with the data.
-plot_model <- function(fit, covariate, dataset) {
+# Visualize a single model fit from rstanarm.
+plot_model <- function(fit) {
+  covariate <- names(coef(fit))[2]
   samples <- as.data.frame(fit)
   colnames(samples)[1] <- "intercept"
   ggplot() +
-    geom_point(aes_string(x = covariate, y = "gsp"), dataset) +
+    geom_point(aes_string(x = covariate, y = "gsp"), fit$data) +
     geom_abline(
       aes_string(slope = covariate, intercept = "intercept"),
       samples,
@@ -46,7 +41,8 @@ plot_model <- function(fit, covariate, dataset) {
     theme_gray(20)
 }
 
-# Plot multiple ggplot2 plots in the same window.
+# Show multiple plots together.
 gather_plots <- function(...) {
-  grid.arrange(..., ncol = 2)
+  grobs <- lapply(list(...), plot_model)
+  arrangeGrob(grobs = grobs, ncol = 2)
 }

@@ -5,8 +5,8 @@ library(dplyr)
 library(Ecdat) # econometrics datasets
 library(ggplot2)
 library(gridExtra)
-library(knitr)
 library(rlang)
+library(rmarkdown)
 library(rstanarm) # Bayesian generalized linear models
 library(tibble)
 
