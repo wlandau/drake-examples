@@ -1,5 +1,6 @@
 code_to_plan.zip
 Docker-psock.zip
+gsp-Bayes.zip
 gsp.zip
 lfs.zip
 main.zip
