@@ -1,0 +1,21 @@
+---
+title: "Results report: Bayesian regression and gross state products"
+author: "William Michael Landau"
+output: html_document
+---
+
+This report summarizes the results of a data analysis workflow. Here, we model gross state product using `Ecdat`'s `Produc` dataset and Bayesian regression.
+
+```{r setup}
+library(drake)
+```
+
+```{r data}
+readd(dataset)
+```
+
+```{r plots}
+loadd(plots)
+plots
+```
+
