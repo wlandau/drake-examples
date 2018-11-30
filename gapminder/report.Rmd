@@ -4,7 +4,7 @@ author: "William Michael Landau"
 output: html_document
 ---
 
-Which is the better predictor of a country's GDP per capita, life expectancy or population?
+Which better predicts of a country's GDP per capita, life expectancy or population?
 
 ```{r setup}
 library(drake)

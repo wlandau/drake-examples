@@ -1,4 +1,4 @@
-# Which is the better predictor of a country's GDP per capita,
+# Which better predicts a country's GDP per capita,
 # life expectancy or population?
 # We use the gapminder dataset and Bayesian regression to find out.
 
