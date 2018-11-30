@@ -1,0 +1,22 @@
+---
+title: "Results report: gapminder data analysis"
+author: "William Michael Landau"
+output: html_document
+---
+
+Which is the better predictor of a country's GDP per capita, life expectancy or population?
+
+```{r setup}
+library(drake)
+library(gridExtra)
+```
+
+```{r data}
+readd(dataset)
+```
+
+```{r plots}
+loadd(plots)
+plot(plots)
+```
+

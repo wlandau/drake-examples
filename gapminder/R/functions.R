@@ -1,9 +1,15 @@
 # Center and scale the dataset.
-prepare_dataset <- function() {
-  data(Produc) # From package Ecdat
-  Produc %>%
-    select(-year, -state) %>%
+prepare_dataset <- function(dataset) {
+  dataset %>%
+    # Log-transform some heavily right-skewed variables.
+    mutate(
+      log_gdpPercap = log(gdpPercap), 
+      log_pop = log(pop)
+    ) %>%
+    # Exclude some variables
+    select(-gdpPercap, -pop, -country, -continent, -year) %>%
     as.matrix() %>%
+    # Center and scale the variables.
     scale() %>%
     as_tibble()
 }
@@ -14,10 +20,12 @@ prepare_dataset <- function() {
 # this function takes a long time if `iter` is high.
 fit_model <- function(covariate, dataset) {
   stan_glm(
-    formula = as.formula(paste("gsp ~", covariate)),
+    formula = as.formula(paste("log_gdpPercap ~", covariate)),
     data = dataset,
     family = gaussian(link = "identity"),
-    iter = 1e3, # Change the number of iterations to vary runtime.
+    chains = 4,
+    iter = 2e4, # Takes a long time!
+    thin = 1e1,
     refresh = 0,
     show_messages = FALSE
   )
@@ -29,7 +37,7 @@ plot_model <- function(fit) {
   samples <- as.data.frame(fit)
   colnames(samples)[1] <- "intercept"
   ggplot() +
-    geom_point(aes_string(x = covariate, y = "gsp"), fit$data) +
+    geom_point(aes_string(x = covariate, y = "log_gdpPercap"), fit$data) +
     geom_abline(
       aes_string(slope = covariate, intercept = "intercept"),
       samples,

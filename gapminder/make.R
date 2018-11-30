@@ -1,5 +1,6 @@
-# This workflow fits models of gross state product using Bayesian regression.
-# It uses the Produc from the Ecdat package.
+# Which is the better predictor of a country's GDP per capita,
+# life expectancy or population?
+# We use the gapminder dataset and Bayesian regression to find out.
 
 source("R/packages.R")  # Load all the packages you need.
 source("R/functions.R") # Load all the functions into your environment.

@@ -1,6 +1,6 @@
 # Each row represents a model we fit to gross state product
 analysis_steps <- tibble(
-  covariate = c("emp", "unemp"),
+  covariate = c("lifeExp", "log_pop"),
   dataset = "dataset"
 ) %>%
   mutate(
@@ -14,7 +14,7 @@ analysis_plan <- map_plan(analysis_steps, fit_model) %>%
 
 # Create the whole drake plan.
 plan <- drake_plan(
-  dataset = prepare_dataset(),
+  dataset = prepare_dataset(gapminder::gapminder),
   report = render(
     knitr_in("report.Rmd"),
     output_file = file_out("report.html"),
