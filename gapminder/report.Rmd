@@ -1,6 +1,6 @@
 ---
 title: "Results report: gapminder data analysis"
-author: "William Michael Landau"
+author: "Will Landau"
 output: html_document
 ---
 
