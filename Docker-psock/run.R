@@ -1,5 +1,5 @@
+library(drake) # Needs to be the current CRAN release.
 library(future)
-library(drake)
 
 host_ip <- "localhost"
 if (grepl("(Darwin|Windows)", Sys.info()["sysname"])) {
@@ -11,7 +11,13 @@ cl <- future::makeClusterPSOCK( # nolint
   ## Launch Rscript inside Docker container
   rscript = c(
     "docker", "run", "--net=host",
-    "--mount", paste("type=bind,source=", getwd(), ",target=/home/rstudio", sep = ""),
+    "--mount",
+    paste(
+      "type=bind,source=",
+      getwd(),
+      ",target=/home/rstudio",
+      sep = ""
+    ),
     "rocker/verse",
     "Rscript"
   ),
@@ -29,7 +35,7 @@ cl <- future::makeClusterPSOCK( # nolint
 )
 
 future::plan(cluster, workers = cl)
-load_mtcars_example()
+load_mtcars_example(overwrite = TRUE)
 
 # Add a code chunk in `report.Rmd` to verify that
 # we are really running it in a Docker container.
