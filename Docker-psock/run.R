@@ -1,19 +1,38 @@
 library(future)
 library(drake)
 
+host_ip <- "localhost"
+if (grepl("(Darwin|Windows)", Sys.info()["sysname"])) {
+  host_ip <- "host.docker.internal"
+}
+
 cl <- future::makeClusterPSOCK( # nolint
   "localhost",
   ## Launch Rscript inside Docker container
   rscript = c(
-    "docker", "run", "--net=host", "rocker/r-base",
+    "docker", "run", "--net=host",
+    "--mount", paste("type=bind,source=", getwd(), ",target=/home/rstudio", sep = ""),
+    "rocker/verse",
     "Rscript"
   ),
-  ## Install drake
   rscript_args = c(
-    "-e", shQuote("install.packages('drake')")
-  )
+    ## Install drake
+    "-e", shQuote("install.packages('drake')"),
+    
+    ## Install future
+    "-e", shQuote("install.packages('future')"),
+    
+    ## set working directory to bound dir
+    "-e", shQuote("setwd('home/rstudio')")
+  ),
+  master = host_ip
 )
 
 future::plan(cluster, workers = cl)
 load_mtcars_example()
+
+# Add a code chunk in `report.Rmd` to verify that
+# we are really running it in a Docker container.
+write("\n```{r info}\nSys.info()\n```", "report.Rmd", append = TRUE)
+
 make(my_plan, parallelism = "future")
