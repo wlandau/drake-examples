@@ -2,8 +2,8 @@
 # This example requires packages forcats, readxl, and rmarkdown,
 # but you do not need to load them here.
 library(drake)
-library(dplyr)
-library(ggplot2)
+require(dplyr)
+require(ggplot2)
 pkgconfig::set_config("drake::strings_in_dots" = "literals") # New file API
 
 # Your custom code is a bunch of functions.
