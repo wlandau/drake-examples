@@ -15,4 +15,4 @@ drake_hpc_template_file("torque_clustermq.tmpl")
 options(clustermq.scheduler = "torque", template = "torque_clustermq.tmpl")
 
 load_mtcars_example()
-make(my_plan, parallelism = "clustermq_staged", jobs = 4)
+make(my_plan, parallelism = "clustermq", jobs = 4)
