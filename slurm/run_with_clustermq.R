@@ -15,4 +15,4 @@ drake_hpc_template_file("slurm_clustermq.tmpl")
 options(clustermq.scheduler = "slurm", template = "slurm_clustermq.tmpl")
 
 load_mtcars_example()
-make(my_plan, parallelism = "clustermq_staged", jobs = 4)
+make(my_plan, parallelism = "clustermq", jobs = 4)
