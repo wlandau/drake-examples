@@ -1,51 +1,40 @@
-
+library(drake)
 library(DBI)
 library(RSQLite)
 
-fetch_cache <- drake_strings({
-  mydb <- DBI::dbConnect(RSQLite::SQLite(), "my-db.sqlite")
-  cache <- storr::storr_dbi(
-    "dattbl", "keystbl", con = mydb, hash_algorithm = "murmur32")
-  configure_cache(
-    cache = cache,
-    long_hash_algo = "sha1",
-    overwrite_hash_algos = TRUE
-  )
-})
+load_mtcars_example()
 
-cache <- eval(parse(text = fetch_cache))
-cache2 <- this_cache(fetch_cache = fetch_cache)
+# Set up the database cache.
+mydb <- DBI::dbConnect(RSQLite::SQLite(), "my-db.sqlite")
+cache <- storr::storr_dbi("dattbl", "keystbl", mydb)
 
-scenario <- get_testing_scenario()
-e <- eval(parse(text = scenario$envir))
-e$mydb <- mydb
+# Make your targets normally.
+make(plan = my_plan, cache = cache)
 
-# Parallelism currently does not work here.
-# I need to debug.
-parallelism <- "mclapply"
-jobs <- 1
-# parallelism <- scenario$parallelism # nolint
-# jobs <- scenario$jobs # nolint
+# Read from the cache.
+loadd(small, cache = cache)
+head(small)
 
-load_mtcars_example(envir = e)
-con <- drake_config(e$my_plan, envir = e)
-con$cache$destroy()
+# Remove the targets.
+cached(cache = cache)
+clean(cache = cache)
+cached(cache = cache)
 
-# Need to fix richfitz/storr#60 before using the full workflow plan.
-e$my_plan <- e$my_plan[e$my_plan$target != "'report.md'", ]
+# Get ready for parallel execution
+# powered by the `future` package
+future::plan(future::multiprocess)
 
-my_plan <- e$my_plan
-config <- drake_config(
-  my_plan, envir = e,
-  jobs = jobs,
-  parallelism = parallelism,
+# Make the targets in parallel
+# Below, `caching = "master"` ensures
+# that only one process writes to the cache at a time.
+# This is key for non-default non-`storr_rds()` caches.
+make(
+  plan = my_plan,
   cache = cache,
-  fetch_cache = fetch_cache
+  parallelism = "future",
+  jobs = 2,
+  caching = "master" # Important for DBI caches!
 )
-testrun(config)
 
-sort(built(cache = cache))
-
-# Clean up
+# Disconnect from the cache.
 cache$driver$disconnect()
-cache2$driver$disconnect()
