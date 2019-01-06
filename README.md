@@ -10,13 +10,9 @@ devtools::install_github("ropensci/drake")
 library(drake)
 # List the available examples.
 drake_examples()
-#> [1] "Docker-psock"     "gsp"              "lfs"              "main"            
-#> [5] "Makefile-cluster" "mtcars"           "packages"         "sge"             
-#> [9] "slurm"            "torque"     
-# Get an example.
+# Get an example
 drake_example("main")
-list.files()
-#> [1] "main"
+list.files() # See the new 'main' folder
 ```
 
 # Contributing
@@ -33,7 +29,6 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 # High-performance computing examples
 
 - `Docker-psock`: demonstrates how to deploy targets to a [Docker container](https://www.docker.com/what-container) using a specialized PSOCK cluster.
-- `Makefile-cluster`: uses [Makefiles](https://www.gnu.org/software/make/) to deploy targets to a generic cluster (configurable).
 - `sge`: uses `drake`'s high-performance computing functionality to send work to a [Grid Engine](http://www.univa.com/products/) cluster.
 - `slurm`: similar to `sge`, but for [SLURM](https://slurm.schedmd.com).
 - `torque`: similar to `sge`, but for [TORQUE](http://www.adaptivecomputing.com/products/open-source/torque/).
