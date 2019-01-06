@@ -5,12 +5,11 @@ max_deps <- floor(sqrt(n))
 
 library(drake)
 library(fs)
-library(processx)
 library(profile)
 
 # Let n be the number of targets.
 # If max_deps is Inf, there are n * (n - 1) / 2 dependency connections
-# among all the targets (maximum possible)
+# among all the targets (maximum possible edges)
 # For i = 2, ..., n, target i depends on targets 1 through i - 1.
 create_plan <- function(n, max_deps = sqrt(n)) {
   plan <- drake_plan(target_1 = 1)
@@ -46,10 +45,6 @@ overhead(n, max_deps) # Could take a long time
 # Convert profiling results to pprof-friendly format.
 for(path in c(config_rprof(n, max_deps), make_rprof(n, max_deps))) {
   proto <- path_ext_set(path, "proto")
-  graph <- path_ext_set(path, "pdf")
   data <- read_rprof(path)
   write_pprof(data, proto)
 }
-
-# Works on Linux but not from R
-# system2("bash", "graph.sh") # Works in Linux but not from R.
