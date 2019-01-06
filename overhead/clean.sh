@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -rf *~ Makefile pdf *.out *.proto .RData *.Rprof *.Rout
+rm -rf *~ Makefile *.out *.proto .RData *.Rprof *.Rout
