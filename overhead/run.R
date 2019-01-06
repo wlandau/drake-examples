@@ -1,7 +1,7 @@
 # Profile the overhead incurred by drake on a large example.
 
 n <- 1024
-max_deps <- sqrt(n)
+max_deps <- floor(sqrt(n))
 
 library(drake)
 library(fs)
