@@ -1,6 +1,6 @@
 # Profile the overhead incurred by drake on a large example.
 
-n <- 1024
+n <- 4096
 max_deps <- floor(sqrt(n))
 
 library(drake)
@@ -35,7 +35,7 @@ overhead <- function(n, max_deps = sqrt(n)) {
   plan <- create_plan(n = n, max_deps = max_deps)
   cache <- new_cache(tempfile())
   Rprof(filename = config_rprof(n, max_deps))
-  config <- drake_config(plan = plan, cache = cache, verbose = 0)
+  config <- drake_config(plan = plan, cache = cache, verbose = 0L)
   Rprof(filename = make_rprof(n, max_deps))
   make(config = config)
   Rprof(NULL)
