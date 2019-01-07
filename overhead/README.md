@@ -6,8 +6,8 @@ Generate the benchmarks and then see interactive visuals with `pprof`. The flame
 
 ```r
 Rscript run.R
-pprof -http=:8080 make_rprof_4096_64.proto
-pprof -http=:8080 config_rprof_4096_64.proto
+pprof -http=0.0.0.0:8080 make_rprof_4096_64.proto
+pprof -http=0.0.0.0:8080 config_rprof_4096_64.proto
 ```
 
 ## Files
