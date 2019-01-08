@@ -1,6 +1,6 @@
 # Profile the overhead incurred by drake on a large example.
 
-n <- 4
+n <- 4096L
 max_deps <- as.integer(sqrt(n))
 
 library(drake)
@@ -59,4 +59,4 @@ vis <- function(n, max_deps, ip_listen = "localhost", port = "8080") {
 }
 
 overhead(n, max_deps)
-vis(n, max_deps, ip_listen = "localhost", port = "8083")
+vis(n, max_deps, ip_listen = "localhost", port = "8080")
