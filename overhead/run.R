@@ -1,6 +1,6 @@
 # Profile the overhead incurred by drake on a large example.
 
-n <- 4096L
+n <- 4
 max_deps <- as.integer(sqrt(n))
 
 library(drake)
@@ -38,17 +38,25 @@ overhead <- function(n, max_deps) {
   write_pprof(data, proto_file(n, max_deps))
 }
 
-vis <- function(n, max_deps) {
+# Change ip_listen to "0.0.0.0" if you want to view the results
+# on a different machine.
+vis <- function(n, max_deps, ip_listen = "localhost", port = "8080") {
+  message(
+    "Navigate a web browser to ",
+    system2("hostname", shQuote("--long"), stdout = TRUE),
+    ":",
+    port,
+    "."
+  )
   system2(
     find_pprof(),
     c(
       "-http",
-      "localhost:8081", # Change to 0.0.0.0:8081 if your browser is on another computer. # nolint
+      paste0(ip_listen, ":", port),
       shQuote(proto_file(n, max_deps))
     )
   )
 }
 
 overhead(n, max_deps)
-vis(n, max_deps)
-# Now, open a browser and navigate to localhost:8081.
+vis(n, max_deps, ip_listen = "localhost", port = "8083")
