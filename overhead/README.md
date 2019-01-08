@@ -2,13 +2,7 @@ This is a profiling study of `drake`. In order to isolate and measure overhead, 
 
 ## Main profiling workflow
 
-Generate the benchmarks and then see interactive visuals with `pprof`. The flame graph is particularly useful.
-
-```r
-Rscript run.R
-pprof -http=:8080 make_rprof_4096_64.proto
-pprof -http=:8080 config_rprof_4096_64.proto
-```
+Run `Rscript run.R` to profile [`drake`](https://github.com/ropensci/drake) and visualize the profiling results in a local interactive web server.
 
 ## Files
 
@@ -17,6 +11,7 @@ pprof -http=:8080 config_rprof_4096_64.proto
 
 ## Dependencies
 
-- R packages in the `library()` calls in `run.R`.
-- [`pprof`](https://github.com/google/pprof) (requires [Go](https://golang.org)).
-- [`RProtoBuf`](https://github.com/eddelBuettel/RProtoBuf) and its dependencies.
+- [`drake`](https://github.com/ropensci/drake)
+- [`jointprof`](https://github.com/r-prof/jointprof) and [its dependencies](https://r-prof.github.io/jointprof/#installation), including [Go](https://golang.org)), [`pprof`](https://github.com/google/pprof), and [`gperftools`](https://github.com/gperftools/gperftools).
+- [`profile`](https://github.com/r-prof/profile).
+- [`RProtoBuf`](https://github.com/eddelBuettel/RProtoBuf) and [its dependencies](https://github.com/eddelBuettel/RProtoBuf#installation).

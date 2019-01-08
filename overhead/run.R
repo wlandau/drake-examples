@@ -1,17 +1,17 @@
 # Profile the overhead incurred by drake on a large example.
 
-n <- 4096
-max_deps <- floor(sqrt(n))
+n <- 4096L
+max_deps <- as.integer(sqrt(n))
 
 library(drake)
-library(fs)
+library(jointprof) # remotes::install_github("r-prof/jointprof")
 library(profile)
 
 # Let n be the number of targets.
 # If max_deps is Inf, there are n * (n - 1) / 2 dependency connections
 # among all the targets (maximum possible edges)
 # For i = 2, ..., n, target i depends on targets 1 through i - 1.
-create_plan <- function(n, max_deps = sqrt(n)) {
+create_plan <- function(n, max_deps) {
   plan <- drake_plan(target_1 = 1)
   for (i in seq_len(n - 1) + 1){
     target <- paste0("target_", i)
@@ -22,29 +22,33 @@ create_plan <- function(n, max_deps = sqrt(n)) {
   plan
 }
 
-config_rprof <- function(n, max_deps = sqrt(n)) {
-  paste0("config_rprof_", n, "_", max_deps, ".Rprof")
+proto_file <- function(n, max_deps) {
+  paste0("overhead_rprof_", n, "_", max_deps, ".proto")
 }
 
-make_rprof <- function(n, max_deps = sqrt(n)) {
-  paste0("make_rprof_", n, "_", max_deps, ".Rprof")
-}
-
-overhead <- function(n, max_deps = sqrt(n)) {
+overhead <- function(n, max_deps) {
+  rprof_file <- tempfile()
   plan <- create_plan(n = n, max_deps = max_deps)
   cache <- new_cache(tempfile())
-  Rprof(filename = config_rprof(n, max_deps))
+  Rprof(filename = rprof_file)
   config <- drake_config(plan = plan, cache = cache, verbose = 0L)
-  Rprof(filename = make_rprof(n, max_deps))
   make(config = config)
   Rprof(NULL)
+  data <- read_rprof(rprof_file)
+  write_pprof(data, proto_file(n, max_deps))
 }
 
-overhead(n, max_deps) # Could take a long time
-
-# Convert profiling results to pprof-friendly format.
-for(path in c(config_rprof(n, max_deps), make_rprof(n, max_deps))) {
-  proto <- path_ext_set(path, "proto")
-  data <- read_rprof(path)
-  write_pprof(data, proto)
+vis <- function(n, max_deps) {
+  system2(
+    find_pprof(),
+    c(
+      "-http",
+      "localhost:8081", # Change to 0.0.0.0:8081 if your browser is on another computer. # nolint
+      shQuote(proto_file(n, max_deps))
+    )
+  )
 }
+
+overhead(n, max_deps)
+vis(n, max_deps)
+# Now, open a browser and navigate to localhost:8081.
