@@ -27,11 +27,15 @@ proto_file <- function(n, max_deps) {
 }
 
 overhead <- function(n, max_deps) {
+  e <- new.env(parent = globalenv())
+  for (i in seq_len(1e3)) {
+    assign(x = digest::digest(i), value = 1, envir = e)
+  }
   rprof_file <- tempfile()
   plan <- create_plan(n = n, max_deps = max_deps)
   cache <- new_cache(tempfile())
   Rprof(filename = rprof_file)
-  config <- drake_config(plan = plan, cache = cache, verbose = 0L)
+  config <- drake_config(plan = plan, cache = cache, envir = e, verbose = 0L)
   make(config = config)
   Rprof(NULL)
   data <- read_rprof(rprof_file)
@@ -58,5 +62,5 @@ vis <- function(n, max_deps, ip_listen = "localhost", port = "8080") {
   )
 }
 
-overhead(n, max_deps)
-vis(n, max_deps, ip_listen = "localhost", port = "8080")
+#overhead(n, max_deps)
+vis(n, max_deps, ip_listen = "localhost", port = "8090")
