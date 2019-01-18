@@ -7,5 +7,3 @@ library(rlang)
 library(rmarkdown)
 library(rstanarm)
 library(tibble)
-
-pkgconfig::set_config("drake::strings_in_dots" = "literals")
