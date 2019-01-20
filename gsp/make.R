@@ -13,28 +13,7 @@ ls()
 # vis_drake_graph(config)            # nolint
 
 # Now it is time to actually run your project.
-if (F) {
-Rprof("prof.out")
 make(plan) # Or make(plan, jobs = 2), etc.
-Rprof(NULL)
-}
-
-library(profile)
-  data <- read_rprof("prof.out")
-  write_pprof(data, "pprof.out")
-
-  library(jointprof)
-
-  system2(
-    find_pprof(),
-    c(
-      "-http",
-      "0.0.0.0:8080",
-      shQuote("pprof.out")
-    )
-  )
-
-  
 
 # Now, if you make(plan) again, no work will be done
 # because the results are already up to date.
