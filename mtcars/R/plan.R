@@ -1,6 +1,46 @@
 # This is where you set up your workflow plan,
 # a data frame with the steps of your analysis.
 
+###################
+### THE NEW WAY ###
+###################
+
+# drake >= 7.0.0 has a new interface for generating plans.
+# Read about it at https://ropenscilabs.github.io/drake-manual/plans.html
+
+my_plan <- drake_plan(
+  report = knit(knitr_in("report.Rmd"), file_out("report.md"), quiet = TRUE),
+  small = simulate(48),
+  large = simulate(64),
+  regression1 = target(
+    reg1(data),
+    transform = map(data = c(small, large)),
+    group = reg
+  ),
+  regression2 = target(
+    reg2(data),
+    transform = map(data),
+    group = reg
+  ),
+  summ = target(
+    suppressWarnings(summary(reg$residuals)),
+    transform = map(reg)
+  ),
+  coef = target(
+    suppressWarnings(summary(reg))$coefficients,
+    transform = map(reg)
+  )
+)
+
+###################
+### THE OLD WAY ###
+###################
+
+# The old way of generating plans takes more steps,
+# but it has been around longer.
+
+if (FALSE) { # Set to TRUE to run
+
 # We write drake commands to generate our two bootstrapped datasets.
 my_datasets <- drake_plan(
   small = simulate(48),
@@ -54,3 +94,6 @@ report <- drake_plan(
 
 # Row order doesn't matter in the workflow my_plan.
 my_plan <- bind_plans(report, my_datasets, my_analyses, my_summaries)
+
+}
+
