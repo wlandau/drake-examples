@@ -31,13 +31,12 @@ We look at download trends in the following packages.
 
 ```{r reportlibdrakepkgs}
 library(drake)
-readd(package_list) # see also loadd() # nolint
 ```
 
 Using the [cranlogs package](https://github.com/metacran/cranlogs), we calculate the mean number of downloads for each package from the RStudio CRAN mirror. We show these averages for the last month,
 
 ```{r reportavgrecent}
-readd(averages_recent)
+readd(averages_recent) # see also loadd()
 ```
 
 and from November 1 to December 1 in 2016.
