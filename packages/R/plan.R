@@ -1,14 +1,3 @@
-# This is where you set up your workflow plan,
-# a data frame with the steps of your analysis.
-
-# We want to explore the daily downloads from these packages.
-
-package_list <- c(
-  "knitr",
-  "Rcpp",
-  "ggplot2"
-)
-
 # We will use the cranlogs package to get the data.
 # The data frames `older` and `recent` will
 # contain the number of daily downloads for each package
@@ -17,15 +6,55 @@ package_list <- c(
 # That way, drake automatically knows to fetch the recent data
 # when a new CRAN log becomes available.
 
+###################
+### THE NEW WAY ###
+###################
+
+# drake >= 7.0.0 has a new interface for generating plans.
+# Read about it at https://ropenscilabs.github.io/drake-manual/plans.html
+
+plan <- drake_plan(
+  older = cran_downloads(
+    packages = c("knitr", "Rcpp", "ggplot2"),
+    from = "2016-11-01",
+    to = "2016-12-01",
+  ),
+  recent = target(
+    command = cran_downloads(
+      packages = c("knitr", "Rcpp", "ggplot2"),
+      when = "last-month"),
+    trigger = trigger(change = latest_log_date())
+  ),
+  averages = target(
+    make_my_table(data),
+    transform = map(data = c(older, recent))
+  ),
+  plot = target(
+    make_my_plot(data),
+    transform = map(data)
+  ),
+  report = knit(knitr_in("report.Rmd"), file_out("report.md"), quiet = TRUE)
+)
+
+
+###################
+### THE OLD WAY ###
+###################
+
+# The old way of generating plans takes more steps,
+# but it has been around longer.
+
+if (FALSE) { # suppressed
+
 data_plan <- drake_plan(
   older = cran_downloads(
-    packages = package_list,
+    packages = c("knitr", "Rcpp", "ggplot2"),
     from = "2016-11-01",
     to = "2016-12-01"
   ),
   recent = target(
     command = cran_downloads(
-      packages = package_list,
+      packages = c("knitr", "Rcpp", "ggplot2"),
       when = "last-month"
     ),
     trigger = trigger(change = latest_log_date())
@@ -68,8 +97,10 @@ report_plan <- drake_plan(
 # drake analyzes the plan to figure out the dependency network,
 # so row order does not matter.
 
-whole_plan <- bind_plans(
+plan <- bind_plans(
   data_plan,
   output_plan,
   report_plan
 )
+
+}

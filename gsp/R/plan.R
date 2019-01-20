@@ -34,5 +34,3 @@ plan <- drake_plan(
   plot = ggsave(filename = file_out("rmspe.pdf"), plot = plot_rmspe(rmspe)),
   report = knit(knitr_in("report.Rmd"), file_out("report.md"), quiet = TRUE)
 )
-
-

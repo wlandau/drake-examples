@@ -39,7 +39,7 @@ my_plan <- drake_plan(
 # The old way of generating plans takes more steps,
 # but it has been around longer.
 
-if (FALSE) { # Set to TRUE to run
+if (FALSE) { # suppressed
 
 # We write drake commands to generate our two bootstrapped datasets.
 my_datasets <- drake_plan(
