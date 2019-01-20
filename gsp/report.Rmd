@@ -41,8 +41,7 @@ The `Produc` dataset from the [Ecdat package](https://cran.r-project.org/package
 
 ```{r masterdata}
 library(Ecdat)
-data(Produc)
-head(Produc)
+head(Ecdat::Produc)
 ```
 
 # Results
