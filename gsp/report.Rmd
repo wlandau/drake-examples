@@ -40,7 +40,6 @@ The `Produc` dataset from the [Ecdat package](https://cran.r-project.org/package
 - `unemp`: state unemployment rate.
 
 ```{r masterdata}
-library(Ecdat)
 head(Ecdat::Produc)
 ```
 
