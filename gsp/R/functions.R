@@ -1,9 +1,9 @@
 # We need to define a function to get the
 # root mean squared prediction error.
-get_rmspe <- function(lm_fit, data){
+get_rmspe <- function(model_fit, data){
   y <- data$gsp
-  yhat <- predict(lm_fit, data = data)
-  terms <- attr(summary(lm_fit)$terms, "term.labels")
+  yhat <- as.numeric(predict(model_fit, newdata = data))
+  terms <- attr(model_fit$terms, "term.labels")
   data.frame(
     rmspe = sqrt(mean((y - yhat)^2)), # nolint
     X1 = terms[1],

@@ -20,7 +20,9 @@ x3 <- rlang::syms(combos[3, ])
 # Install with remotes::install_github("ropensci/drake").
 plan <- drake_plan(
   model = target(
-    lm(gsp ~ x1 + x2 + x3, data = Ecdat::Produc),
+    # biglm models are more memory-efficient and easier to store
+    # than models from lm().
+    biglm(gsp ~ x1 + x2 + x3, data = Ecdat::Produc),
     transform = map(x1 = !!x1, x2 = !!x2, x3 = !!x3)
   ),
   rmspe_i = target(
