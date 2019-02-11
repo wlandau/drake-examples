@@ -14,13 +14,11 @@ my_plan <- drake_plan(
   large = simulate(64),
   regression1 = target(
     reg1(data),
-    transform = map(data = c(small, large)),
-    group = reg
+    transform = map(data = c(small, large), .tag_out = reg)
   ),
   regression2 = target(
     reg2(data),
-    transform = map(data),
-    group = reg
+    transform = map(data, .tag_out = reg)
   ),
   summ = target(
     suppressWarnings(summary(reg$residuals)),
