@@ -31,8 +31,8 @@ plan <- drake_plan(
     transform = map(model)
   ),
   rmspe = target(
-    rmspe_i,
-    transform = combine(rmspe_i = bind_rows(.id = "model"))
+    bind_rows(rmspe_i, .id = "model"),
+    transform = combine(rmspe_i)
   ),
   plot = ggsave(filename = file_out("rmspe.pdf"), plot = plot_rmspe(rmspe)),
   report = knit(knitr_in("report.Rmd"), file_out("report.md"), quiet = TRUE)
