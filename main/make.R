@@ -3,10 +3,11 @@
 # Code: drake_example("main") # nolint
 
 # Load our packages and supporting functions into our session.
-source(file.path("R", "setup.R"))
+source("R/packages.R")
+source("R/functions.R")
 
 # Create the `drake` plan that outlines the work we are going to do.
-source(file.path("R", "plan.R"))
+source("R/plan.R")
 
 # Run your work with make().
 make(plan)
