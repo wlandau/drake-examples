@@ -6,4 +6,9 @@ In large networks, such that a given actor may interact with a large number of o
 
 > Fixed choice nominations can easily lead to a non-random missing data pattern. For instance, certain actors may possess some great personal qualities and hence would be present on the “best friends” lists of many other actors. That is, popular individuals who have more contacts may be more likely to be nominated by their contacts (Feld,1991; Newman, 2003).
 
+And ultimately poses the question:
+
+> What effect will this have on the structural properties of the truncated graph?
+
+The purpose of this small simulation is to examine how a FCD might influence the recovered network structure of a random graph when the a) size of the network, b) probability of edge formation, and c) fixed choice size are manipulated.
 
