@@ -1,6 +1,6 @@
 #Experimental Conditions
 
-conds <- fcdConds(nPeople = c(1000,100,10), pEdge = c(0.75,0.5,0.25), topN = c(NA, 5, 10))
+conds <- fcdConds(nPeople = c(100000,10000,1000,100), pEdge = c(0.75,0.5,0.25,0.1), topN = c(NA, 3, 5, 10))
 
 plan <- drake_plan(
   ddist_i = target(

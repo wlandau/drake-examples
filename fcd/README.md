@@ -10,7 +10,7 @@ And ultimately poses the question:
 
 > What effect will this have on the structural properties of the truncated graph?
 
-The purpose of this small simulation is to examine how a FCD might influence the recovered network structure of a random graph when the
+The purpose of this small simulation is to examine how a FCD might influence the degree distribution of the recovered network structure of a random graph when the
 
 * size of the network (`nPeople`)
 
