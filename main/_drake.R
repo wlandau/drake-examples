@@ -1,3 +1,6 @@
+# This file serves the r_*() functions described at
+# https://ropenscilabs.github.io/drake-manual/projects.html#safer-interactivity
+
 # Load our packages and supporting functions into our session.
 source("R/packages.R")
 source("R/functions.R")
