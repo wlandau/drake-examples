@@ -12,11 +12,11 @@ And ultimately poses the question:
 
 The purpose of this small simulation is to examine how a FCD might influence the recovered network structure of a random graph when the
 
-* size of the network
+* size of the network (`nPeople`)
 
-* probability of edge formation
+* probability of edge formation (`pEdge`)
 
-* fixed choice size 
+* fixed choice size (`topN`)
 
 are manipulated.
 
