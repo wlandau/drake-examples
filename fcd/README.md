@@ -10,5 +10,13 @@ And ultimately poses the question:
 
 > What effect will this have on the structural properties of the truncated graph?
 
-The purpose of this small simulation is to examine how a FCD might influence the recovered network structure of a random graph when the a) size of the network, b) probability of edge formation, and c) fixed choice size are manipulated.
+The purpose of this small simulation is to examine how a FCD might influence the recovered network structure of a random graph when the
+
+* size of the network
+
+* probability of edge formation
+
+* fixed choice size 
+
+are manipulated.
 
