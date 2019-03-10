@@ -1,4 +1,4 @@
-# This file serves the r_*() functions described at
+# This file serves the r_*() functions (e.g. r_make()) described at
 # https://ropenscilabs.github.io/drake-manual/projects.html#safer-interactivity
 
 # Load our packages and supporting functions into our session.
