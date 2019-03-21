@@ -1,0 +1,1 @@
+The code from this example was modified from https://github.com/sol-eng/tensorflow-w-r under [Apache License 2.0](https://github.com/sol-eng/tensorflow-w-r/blob/master/LICENSE).

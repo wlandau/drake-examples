@@ -1,0 +1,18 @@
+---
+title: "Customer churn results"
+output: html_document
+---
+
+Here is the fitted model.
+
+```{r}
+library(drake)
+readd(plotted_model)
+```
+
+And here is the confusion matrix.
+
+```{r}
+loadd(confusion_matrix)
+confusion_matrix
+```
