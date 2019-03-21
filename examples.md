@@ -11,4 +11,5 @@ overhead.zip
 packages.zip
 sge.zip
 slurm.zip
+tensorflow.zip
 torque.zip
