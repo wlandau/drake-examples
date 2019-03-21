@@ -1,3 +1,5 @@
+# These functions support the commands in the plan.
+
 customer_churn_recipe <- function(data) {
   data %>%
     training() %>%

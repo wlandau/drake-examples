@@ -3,6 +3,8 @@ title: "Customer churn results"
 output: html_document
 ---
 
+This report does not contain the full workflow end-to-end. Instead, it is a small piece of the overall deep learning workflow. `drake`'s philosophy is to have R Markdown reports do as little computation as possible.
+
 Here is the fitted model.
 
 ```{r}
