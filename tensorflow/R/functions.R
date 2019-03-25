@@ -1,6 +1,4 @@
-# These functions support the commands in the plan.
-
-customer_churn_recipe <- function(data) {
+prepare_recipe <- function(data) {
   data %>%
     training() %>%
     recipe(Churn ~ .) %>%
@@ -15,9 +13,9 @@ customer_churn_recipe <- function(data) {
     prep()
 }
 
-compile_churn_model <- function(training_recipe) {
+define_model <- function(churn_recipe) {
   input_shape <- ncol(
-    juice(training_recipe, all_predictors(), composition = "matrix")
+    juice(churn_recipe, all_predictors(), composition = "matrix")
   )
   keras_model_sequential() %>%
     layer_dense(
@@ -37,26 +35,26 @@ compile_churn_model <- function(training_recipe) {
       units = 1,
       kernel_initializer = "uniform",
       activation = "sigmoid"
-    ) %>%
-    compile(
-      optimizer = "adam",
-      loss = "binary_crossentropy",
-      metrics = c("accuracy")
     )
 }
 
-fit_churn_model <- function(training_recipe, data) {
-  compiled_model <- compile_churn_model(training_recipe)
+fit_model <- function(data, churn_recipe, model_file) {
+  model <- define_model(churn_recipe)
+  compile(
+    model,
+    optimizer = "adam",
+    loss = "binary_crossentropy",
+    metrics = c("accuracy")
+  )
   x_train_tbl <- juice(
-    training_recipe,
+    churn_recipe,
     all_predictors(),
     composition = "matrix"
   )
-  y_train_vec <- training_recipe %>%
-    juice(all_outcomes()) %>%
+  y_train_vec <- juice(churn_recipe, all_outcomes()) %>%
     pull()
-  fit(
-    object = compiled_model,
+  history <- fit(
+    object = model,
     x = x_train_tbl,
     y = y_train_vec,
     batch_size = 50,
@@ -64,23 +62,25 @@ fit_churn_model <- function(training_recipe, data) {
     validation_split = 0.30,
     verbose = 0
   )
+  save_model_hdf5(model, model_file)
+  history
 }
 
-get_confusion_matrix <- function(training_recipe, data) {
-  compiled_model <- compile_churn_model(training_recipe)
-  testing_data <- bake(training_recipe, testing(data))
+get_conf_matrix <- function(data, churn_recipe, model_file) {
+  model <- load_model_hdf5(model_file)
+  testing_data <- bake(churn_recipe, testing(data))
   x_test_tbl <- testing_data %>%
     select(-Churn) %>%
     as.matrix()
   y_test_vec <- testing_data %>%
     select(Churn) %>%
     pull()
-  yhat_keras_class_vec <- compiled_model %>%
+  yhat_keras_class_vec <- model %>%
     predict_classes(x_test_tbl) %>%
     as.factor() %>%
     fct_recode(yes = "1", no = "0")
   yhat_keras_prob_vec <-
-    compiled_model %>%
+    model %>%
     predict_proba(x_test_tbl) %>%
     as.vector()
   test_truth <- y_test_vec %>%

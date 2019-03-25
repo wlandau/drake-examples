@@ -5,16 +5,16 @@ output: html_document
 
 This report does not contain the full workflow end-to-end. Instead, it is a small piece of the overall deep learning workflow. `drake`'s philosophy is to have R Markdown reports do as little computation as possible.
 
-Here is the fitted model.
+Here is the history of the model fit.
 
 ```{r}
 library(drake)
-readd(plotted_model)
+readd(history_plot)
 ```
 
 And here is the confusion matrix.
 
 ```{r}
-loadd(confusion_matrix)
-confusion_matrix
+loadd(conf_matrix)
+conf_matrix
 ```
