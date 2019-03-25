@@ -1,5 +1,6 @@
 code_to_plan.zip
 dbi.zip
+deep-learning.zip
 Docker-psock.zip
 fcd.zip
 gapminder.zip
@@ -11,5 +12,4 @@ overhead.zip
 packages.zip
 sge.zip
 slurm.zip
-tensorflow.zip
 torque.zip
