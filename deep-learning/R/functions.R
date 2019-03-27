@@ -57,7 +57,7 @@ train_model <- function(data, rec, batch_size) {
     object = model,
     x = x_train_tbl,
     y = y_train_vec,
-    batch_size = 50,
+    batch_size = batch_size,
     epochs = 35,
     validation_split = 0.30,
     verbose = 0
