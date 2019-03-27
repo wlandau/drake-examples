@@ -13,7 +13,7 @@ prepare_recipe <- function(data) {
     prep()
 }
 
-define_model <- function(rec, dropout) {
+define_model <- function(rec) {
   input_shape <- ncol(
     juice(rec, all_predictors(), composition = "matrix")
   )
@@ -24,13 +24,13 @@ define_model <- function(rec, dropout) {
       activation = "relu",
       input_shape = input_shape
     ) %>%
-    layer_dropout(rate = dropout) %>%
+    layer_dropout(rate = 0.1) %>%
     layer_dense(
       units = 16,
       kernel_initializer = "uniform",
       activation = "relu"
     ) %>%
-    layer_dropout(rate = dropout) %>%
+    layer_dropout(rate = 0.1) %>%
     layer_dense(
       units = 1,
       kernel_initializer = "uniform",
@@ -38,8 +38,8 @@ define_model <- function(rec, dropout) {
     )
 }
 
-train_model <- function(data, rec, dropout) {
-  model <- define_model(rec, dropout)
+train_model <- function(data, rec, batch_size) {
+  model <- define_model(rec)
   compile(
     model,
     optimizer = "adam",
@@ -65,8 +65,8 @@ train_model <- function(data, rec, dropout) {
   serialize_model(model)
 }
 
-confusion_matrix <- function(data, rec, model) {
-  model <- unserialize_model(model)
+confusion_matrix <- function(data, rec, serialized_model) {
+  model <- unserialize_model(serialized_model)
   testing_data <- bake(rec, testing(data))
   x_test_tbl <- testing_data %>%
     select(-Churn) %>%
@@ -95,12 +95,20 @@ confusion_matrix <- function(data, rec, model) {
 }
 
 compare_models <- function(...) {
-  models <- as.character(match.call()[-1]) %>%
-    gsub(pattern = "conf_", replacement = "")
+  batch_sizes <- match.call()[-1] %>%
+    as.character() %>%
+    gsub(pattern = "conf_", replacement = "") %>%
+    as.integer() %>%
+    as.factor()
   df <- map_df(list(...), summary) %>%
     filter(.metric %in% c("accuracy", "sens", "spec")) %>%
-    mutate(model = rep(models, each = n() / length(models))) %>%
+    mutate(
+      batch_size = rep(batch_sizes, each = n() / length(batch_sizes))
+    ) %>%
     rename(metric = .metric, estimate = .estimate)
   ggplot(df) +
-    geom_point(aes(x = metric, y = estimate, color = model))
+    geom_line(
+      aes(x = metric, y = estimate, color = batch_size, group = batch_size)
+    ) +
+    theme_gray(16)
 }
