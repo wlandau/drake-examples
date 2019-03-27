@@ -97,9 +97,7 @@ confusion_matrix <- function(data, rec, serialized_model) {
 compare_models <- function(...) {
   batch_sizes <- match.call()[-1] %>%
     as.character() %>%
-    gsub(pattern = "conf_", replacement = "") %>%
-    as.integer() %>%
-    as.factor()
+    gsub(pattern = "conf_", replacement = "")
   df <- map_df(list(...), summary) %>%
     filter(.metric %in% c("accuracy", "sens", "spec")) %>%
     mutate(
