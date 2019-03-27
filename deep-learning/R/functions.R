@@ -13,9 +13,9 @@ prepare_recipe <- function(data) {
     prep()
 }
 
-define_model <- function(churn_recipe) {
+define_model <- function(our_recipe) {
   input_shape <- ncol(
-    juice(churn_recipe, all_predictors(), composition = "matrix")
+    juice(our_recipe, all_predictors(), composition = "matrix")
   )
   keras_model_sequential() %>%
     layer_dense(
@@ -38,8 +38,8 @@ define_model <- function(churn_recipe) {
     )
 }
 
-fit_model <- function(data, churn_recipe, model_file) {
-  model <- define_model(churn_recipe)
+train_model <- function(data, our_recipe) {
+  model <- define_model(our_recipe)
   compile(
     model,
     optimizer = "adam",
@@ -47,13 +47,13 @@ fit_model <- function(data, churn_recipe, model_file) {
     metrics = c("accuracy")
   )
   x_train_tbl <- juice(
-    churn_recipe,
+    our_recipe,
     all_predictors(),
     composition = "matrix"
   )
-  y_train_vec <- juice(churn_recipe, all_outcomes()) %>%
+  y_train_vec <- juice(our_recipe, all_outcomes()) %>%
     pull()
-  history <- fit(
+  fit(
     object = model,
     x = x_train_tbl,
     y = y_train_vec,
@@ -62,13 +62,12 @@ fit_model <- function(data, churn_recipe, model_file) {
     validation_split = 0.30,
     verbose = 0
   )
-  save_model_hdf5(model, model_file)
-  history
+  serialize_model(model)
 }
 
-get_conf_matrix <- function(data, churn_recipe, model_file) {
-  model <- load_model_hdf5(model_file)
-  testing_data <- bake(churn_recipe, testing(data))
+confusion_matrix <- function(data, our_recipe, model) {
+  model <- unserialize_model(model)
+  testing_data <- bake(our_recipe, testing(data))
   x_test_tbl <- testing_data %>%
     select(-Churn) %>%
     as.matrix()
