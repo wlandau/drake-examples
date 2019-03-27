@@ -13,9 +13,9 @@ prepare_recipe <- function(data) {
     prep()
 }
 
-define_model <- function(our_recipe) {
+define_model <- function(rec, dropout) {
   input_shape <- ncol(
-    juice(our_recipe, all_predictors(), composition = "matrix")
+    juice(rec, all_predictors(), composition = "matrix")
   )
   keras_model_sequential() %>%
     layer_dense(
@@ -24,13 +24,13 @@ define_model <- function(our_recipe) {
       activation = "relu",
       input_shape = input_shape
     ) %>%
-    layer_dropout(rate = 0.1) %>%
+    layer_dropout(rate = dropout) %>%
     layer_dense(
       units = 16,
       kernel_initializer = "uniform",
       activation = "relu"
     ) %>%
-    layer_dropout(rate = 0.1) %>%
+    layer_dropout(rate = dropout) %>%
     layer_dense(
       units = 1,
       kernel_initializer = "uniform",
@@ -38,8 +38,8 @@ define_model <- function(our_recipe) {
     )
 }
 
-train_model <- function(data, our_recipe) {
-  model <- define_model(our_recipe)
+train_model <- function(data, rec, dropout) {
+  model <- define_model(rec, dropout)
   compile(
     model,
     optimizer = "adam",
@@ -47,11 +47,11 @@ train_model <- function(data, our_recipe) {
     metrics = c("accuracy")
   )
   x_train_tbl <- juice(
-    our_recipe,
+    rec,
     all_predictors(),
     composition = "matrix"
   )
-  y_train_vec <- juice(our_recipe, all_outcomes()) %>%
+  y_train_vec <- juice(rec, all_outcomes()) %>%
     pull()
   fit(
     object = model,
@@ -65,9 +65,9 @@ train_model <- function(data, our_recipe) {
   serialize_model(model)
 }
 
-confusion_matrix <- function(data, our_recipe, model) {
+confusion_matrix <- function(data, rec, model) {
   model <- unserialize_model(model)
-  testing_data <- bake(our_recipe, testing(data))
+  testing_data <- bake(rec, testing(data))
   x_test_tbl <- testing_data %>%
     select(-Churn) %>%
     as.matrix()
@@ -92,4 +92,15 @@ confusion_matrix <- function(data, our_recipe, model) {
   )
   estimates_keras_tbl %>%
     conf_mat(truth, estimate)
+}
+
+compare_models <- function(...) {
+  models <- as.character(match.call()[-1]) %>%
+    gsub(pattern = "conf_", replacement = "")
+  df <- map_df(list(...), summary) %>%
+    filter(.metric %in% c("accuracy", "sens", "spec")) %>%
+    mutate(model = rep(models, each = n() / length(models))) %>%
+    rename(metric = .metric, estimate = .estimate)
+  ggplot(df) +
+    geom_point(aes(x = metric, y = estimate, color = model))
 }
