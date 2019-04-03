@@ -5,11 +5,13 @@ source("R/packages.R")
 source("R/functions.R")
 source("R/plan.R")
 
-# Uncomment the following to submit deep learning models to a Grid Engine cluster.
+# Optional: submit deep learning models to a Grid Engine cluster.
 # Other resource managers like SLURM are similar.
 # options(clustermq.scheduler = "sge", clustermq.template = "sge_clustermq.tmpl")
-
-# Optionally avoid submitting everything to the cluster (requires drake >= 7.1.0).
+#
+# Optional: avoid submitting non-model targets to the cluster (requires drake >= 7.1.0).
 # plan$hpc <- grepl("^model_", plan$target)
+#
+# make(plan, parallelism = "clustermq", jobs = 2)
 
-make(plan, parallelism = "clustermq", jobs = 3)
+make(plan)
