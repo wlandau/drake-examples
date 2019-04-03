@@ -4,4 +4,5 @@
 source("R/packages.R")
 source("R/functions.R")
 source("R/plan.R")
-make(plan)
+options(clustermq.scheduler = "sge", clustermq.template = "sge_clustermq.tmpl")
+make(plan, parallelism = "clustermq", jobs = 1)

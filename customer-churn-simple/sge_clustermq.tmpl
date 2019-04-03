@@ -1,0 +1,12 @@
+# From https://github.com/mschubert/clustermq/wiki/SGE
+#$ -N {{ job_name }}               # job name
+#$ -t 1-{{ n_jobs }}               # submit jobs as array
+#$ -j y                            # combine stdout/error in one file
+#$ -o {{ log_file | /dev/null }}   # output file
+#$ -cwd                            # use pwd as work dir
+#$ -V                              # use environment variable
+#$ -pe smp 1
+#$ -l gpu=1 -l m_mem_free=8G
+module load R-qualified/3.5.2
+module load python # for the GPU software
+CMQ_AUTH={{ auth }} R --no-save --no-restore -e 'clustermq:::worker("{{ master }}")'
