@@ -42,3 +42,11 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 # Demonstrations of specific features
 
 - `code_to_plan`: a demonstration of `drake`'s `code_to_plan()` function, which can turn ordinary quoted code, R scripts, and `knitr` / R Markdown reports into `drake` [workflow plan data frames](https://ropenscilabs.github.io/drake-manual/plans.html).
+
+# Real-world examples outside this repo
+
+- [sol-eng/tensorflow-w-r](https://github.com/sol-eng/tensorflow-w-r)
+- [efcaguab/demografia-del-voto](https://github.com/efcaguab/demografia-del-voto)
+- [efcaguab/great-white-shark-nsw](https://github.com/efcaguab/great-white-shark-nsw)
+- [IndianaCHE/Detailed-SSP-Reports](https://github.com/IndianaCHE/Detailed-SSP-Reports)
+- [tiernanmartin/home-and-hope](https://github.com/tiernanmartin/home-and-hope)
