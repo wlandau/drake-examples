@@ -1,4 +1,5 @@
 code_to_plan.zip
+customer-churn-fast.zip
 customer-churn-simple.zip
 dbi.zip
 Docker-psock.zip
