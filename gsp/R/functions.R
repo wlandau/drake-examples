@@ -4,7 +4,7 @@ get_rmspe <- function(model_fit, data){
   y <- data$gsp
   yhat <- as.numeric(predict(model_fit, newdata = data))
   terms <- attr(model_fit$terms, "term.labels")
-  data.frame(
+  tibble(
     rmspe = sqrt(mean((y - yhat)^2)), # nolint
     X1 = terms[1],
     X2 = terms[2],
