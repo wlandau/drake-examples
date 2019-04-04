@@ -21,7 +21,8 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 
 # Introductory examples
 
-- `deep-learning`: based on an [RStudio Solutions Engineering example of how to use Keras with R](https://github.com/sol-eng/tensorflow-w-r). The motivation comes from a [blog post by Matt Dancho](https://blogs.rstudio.com/tensorflow/posts/2018-01-11-keras-customer-churn), and the code is based on a [notebook by Edgar Ruiz](https://github.com/sol-eng/tensorflow-w-r/blob/master/workflow/tensorflow-drake.Rmd).
+- `customer-churn-simple`: based on an [RStudio Solutions Engineering example of how to use Keras with R](https://github.com/sol-eng/tensorflow-w-r). The motivation comes from a [blog post by Matt Dancho](https://blogs.rstudio.com/tensorflow/posts/2018-01-11-keras-customer-churn), and the code is based on a [notebook by Edgar Ruiz](https://github.com/sol-eng/tensorflow-w-r/blob/master/workflow/tensorflow-drake.Rmd). If it takes too long to store your deep learning models this kind of workflow, try [`customer-churn-fast`](https://github.com/wlandau/drake-examples/tree/master/customer-churn-fast).
+- `customer-churn-fast`: similar to `customer-churn-simple`, but with more nuance to mitigate a potential [serialization bottleneck](https://github.com/richfitz/storr/issues/77#issuecomment-476275570).
 - `main`: `drake`'s main bare-bones introductory example, based on [Kirill Müller's `drake` pitch](https://krlmlr.github.io/drake-pitch/). This is the most accessible example for beginners.
 - `gsp`: A concrete example using real econometrics data. It explores the relationships between gross state product and other quantities, and it shows off `drake`'s ability to generate lots of reproducibly-tracked tasks with ease.
 - `packages`: A concrete example using data on R package downloads. It demonstrates how `drake` can refresh a project based on new incoming data without restarting everything from scratch.
@@ -41,3 +42,11 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 # Demonstrations of specific features
 
 - `code_to_plan`: a demonstration of `drake`'s `code_to_plan()` function, which can turn ordinary quoted code, R scripts, and `knitr` / R Markdown reports into `drake` [workflow plan data frames](https://ropenscilabs.github.io/drake-manual/plans.html).
+
+# Real-world examples outside this repo
+
+- [sol-eng/tensorflow-w-r](https://github.com/sol-eng/tensorflow-w-r)
+- [efcaguab/demografia-del-voto](https://github.com/efcaguab/demografia-del-voto)
+- [efcaguab/great-white-shark-nsw](https://github.com/efcaguab/great-white-shark-nsw)
+- [IndianaCHE/Detailed-SSP-Reports](https://github.com/IndianaCHE/Detailed-SSP-Reports)
+- [tiernanmartin/home-and-hope](https://github.com/tiernanmartin/home-and-hope)
