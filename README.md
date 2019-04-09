@@ -26,7 +26,7 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 - `main`: `drake`'s main bare-bones introductory example, based on [Kirill Müller's `drake` pitch](https://krlmlr.github.io/drake-pitch/). This is the most accessible example for beginners.
 - `gsp`: A concrete example using real econometrics data. It explores the relationships between gross state product and other quantities, and it shows off `drake`'s ability to generate lots of reproducibly-tracked tasks with ease.
 - `packages`: A concrete example using data on R package downloads. It demonstrates how `drake` can refresh a project based on new incoming data without restarting everything from scratch.
-- `mtcars`: An old example that demonstrates how to generate large workflow plan data frames using wildcard templating. Use `load_mtcars_example()` to set up the project in your workspace.
+- `mtcars`: An old legacy example with the `mtcars` dataset. Use `load_mtcars_example()` to set up the project in your workspace.
 
 # High-performance computing examples
 
@@ -45,8 +45,9 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 
 # Real-world examples outside this repo
 
-- [sol-eng/tensorflow-w-r](https://github.com/sol-eng/tensorflow-w-r)
 - [efcaguab/demografia-del-voto](https://github.com/efcaguab/demografia-del-voto)
 - [efcaguab/great-white-shark-nsw](https://github.com/efcaguab/great-white-shark-nsw)
 - [IndianaCHE/Detailed-SSP-Reports](https://github.com/IndianaCHE/Detailed-SSP-Reports)
+- [pat-s/pathogen-modeling](https://github.com/pat-s/pathogen-modeling)
+- [sol-eng/tensorflow-w-r](https://github.com/sol-eng/tensorflow-w-r)
 - [tiernanmartin/home-and-hope](https://github.com/tiernanmartin/home-and-hope)
