@@ -1,1 +1,1 @@
-This is the example from [Kirill Müller's `drake` pitch slides](https://krlmlr.github.io/drake-pitch), and it is the most accessible example for beginners. For more info, see [this chapter of the user manual](https://ropenscilabs.github.io/drake-manual/intro.html).
+This is the example from [this chapter of the user manual](https://ropenscilabs.github.io/drake-manual/intro.html). Originally written by [Kirill Müller](https://github.com/krlmlr).
