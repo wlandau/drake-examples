@@ -7,6 +7,6 @@
 #SBATCH --cpus-per-task={{ n_cpus }}
 #SBATCH --array=1-{{ n_jobs }}
 
-spack load r@3.5.2
+spack load r@3.5.3
 
 CMQ_AUTH={{ auth }} R --no-save --no-restore -e 'clustermq:::worker("{{ master }}")'
