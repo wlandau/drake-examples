@@ -35,7 +35,7 @@ knn_wrapper <- makeTuneWrapper("classif.kknn",
 )
 
 # Outer resampling config 
-outer <- makeResampleDesc("RepCV", reps = 20, folds = 5)
+outer <- makeResampleDesc("RepCV", reps = 10, folds = 5)
 
 # Benchmark learners and store result in separate objects
 res_svm <- benchmark_custom(
