@@ -8,6 +8,7 @@ gapminder.zip
 gsp.zip
 lfs.zip
 main.zip
+mlr-slurm.zip
 mtcars.zip
 overhead.zip
 packages.zip
