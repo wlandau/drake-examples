@@ -30,6 +30,7 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 
 # High-performance computing examples
 
+- `mlr-slurm`: an example machine learning workflow rigged to deploy to a [SLURM](https://slurm.schedmd.com) cluster.
 - `Docker-psock`: demonstrates how to deploy targets to a [Docker container](https://www.docker.com/what-container) using a specialized PSOCK cluster.
 - `sge`: uses `drake`'s high-performance computing functionality to send work to a [Grid Engine](http://www.univa.com/products/) cluster.
 - `slurm`: similar to `sge`, but for [SLURM](https://slurm.schedmd.com).
@@ -44,6 +45,8 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 - `code_to_plan`: a demonstration of `drake`'s `code_to_plan()` function, which can turn ordinary quoted code, R scripts, and `knitr` / R Markdown reports into `drake` [workflow plan data frames](https://ropenscilabs.github.io/drake-manual/plans.html).
 
 # Real-world examples outside this repo
+
+The official [rOpenSci use cases](https://ropensci.org/usecases/) and [associated discussion threads](https://discuss.ropensci.org/c/usecases) describe applications of `drake` in action. Here are some more real-world sightings of `drake` in the wild.
 
 - [efcaguab/demografia-del-voto](https://github.com/efcaguab/demografia-del-voto)
 - [efcaguab/great-white-shark-nsw](https://github.com/efcaguab/great-white-shark-nsw)
