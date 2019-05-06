@@ -45,6 +45,8 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 
 # Real-world examples outside this repo
 
+The official [rOpenSci use cases](https://ropensci.org/usecases/) and [associated discussion threads](https://discuss.ropensci.org/c/usecases) describe applications of `drake` in action. Here are some more real-world sightings of `drake` in the wild.
+
 - [efcaguab/demografia-del-voto](https://github.com/efcaguab/demografia-del-voto)
 - [efcaguab/great-white-shark-nsw](https://github.com/efcaguab/great-white-shark-nsw)
 - [IndianaCHE/Detailed-SSP-Reports](https://github.com/IndianaCHE/Detailed-SSP-Reports)
