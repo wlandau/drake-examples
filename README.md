@@ -30,6 +30,7 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 
 # High-performance computing examples
 
+- `mlr-slurm`: an example machine learning workflow rigged to deploy to a [SLURM](https://slurm.schedmd.com) cluster.
 - `Docker-psock`: demonstrates how to deploy targets to a [Docker container](https://www.docker.com/what-container) using a specialized PSOCK cluster.
 - `sge`: uses `drake`'s high-performance computing functionality to send work to a [Grid Engine](http://www.univa.com/products/) cluster.
 - `slurm`: similar to `sge`, but for [SLURM](https://slurm.schedmd.com).
