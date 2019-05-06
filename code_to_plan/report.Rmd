@@ -16,5 +16,4 @@ readd(hist)
 More:
 
 - Walkthrough: [this chapter of the user manual](https://ropenscilabs.github.io/drake-manual/intro.html)
-- Slides: [https://krlmlr.github.io/drake-pitch](https://krlmlr.github.io/drake-pitch)
 - Code: `drake_example("main")`
