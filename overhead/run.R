@@ -32,11 +32,12 @@ overhead <- function(n, max_deps) {
     assign(x = digest::digest(i), value = 1, envir = e)
   }
   rprof_file <- tempfile()
-  plan <- create_plan(n = n, max_deps = max_deps)
-  cache <- new_cache(tempfile())
+  plan <- create_plan(n = 5, max_deps = 5)
   Rprof(filename = rprof_file)
-  config <- drake_config(plan = plan, cache = cache, envir = e, verbose = 0L)
-  make(config = config)
+  for (i in 1:100) {
+    make(plan)
+    unlink(".drake", recursive = TRUE, force = TRUE)
+  }
   Rprof(NULL)
   data <- read_rprof(rprof_file)
   write_pprof(data, proto_file(n, max_deps))

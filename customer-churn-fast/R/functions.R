@@ -1,7 +1,3 @@
-# This functions.R file is subtly different from the one from customer-churn-simple:
-# https://github.com/wlandau/drake-examples/blob/master/customer-churn-simple/R/functions.R
-# See the comments below for details.
-
 prepare_recipe <- function(data) {
   data %>%
     training() %>%
@@ -17,34 +13,49 @@ prepare_recipe <- function(data) {
     prep()
 }
 
-define_model <- function(rec) {
+define_model <- function(rec, units1, units2, act1, act2, act3) {
   input_shape <- ncol(
     juice(rec, all_predictors(), composition = "matrix")
   )
   keras_model_sequential() %>%
     layer_dense(
-      units = 16,
+      units = units1,
       kernel_initializer = "uniform",
-      activation = "relu",
+      activation = act1,
       input_shape = input_shape
     ) %>%
     layer_dropout(rate = 0.1) %>%
     layer_dense(
-      units = 16,
+      units = units2,
       kernel_initializer = "uniform",
-      activation = "relu"
+      activation = act2
     ) %>%
     layer_dropout(rate = 0.1) %>%
     layer_dense(
       units = 1,
       kernel_initializer = "uniform",
-      activation = "sigmoid"
+      activation = act3
     )
 }
 
-# We add a new model_file argument.
-train_model <- function(data, rec, batch_size, model_file) {
-  model <- define_model(rec)
+train_model <- function(
+  data,
+  rec,
+  model_file,
+  units1 = 16,
+  units2 = 16,
+  act1 = "relu",
+  act2 = "relu",
+  act3 = "sigmoid"
+) {
+  model <- define_model(
+    rec = rec,
+    units1 = units1,
+    units2 = units2,
+    act1 = act1,
+    act2 = act2,
+    act3 = act3
+  )
   compile(
     model,
     optimizer = "adam",
@@ -62,25 +73,17 @@ train_model <- function(data, rec, batch_size, model_file) {
     object = model,
     x = x_train_tbl,
     y = y_train_vec,
-    batch_size = batch_size,
-    epochs = 35,
-    validation_split = 0.30,
+    batch_size = 32,
+    epochs = 32,
+    validation_split = 0.3,
     verbose = 0
   )
-  
-  # Instead of calling serialize_model(), we save the model to a file.
   save_model_hdf5(model, model_file)
-  
-  # As an added bonus, we can now return the history from the function.
   history
 }
 
-# Again, we need a model_file argument.
 confusion_matrix <- function(data, rec, model_file) {
-  # Instead of calling unserialize_model(),
-  # we load the model from the HDF5 file.
   model <- load_model_hdf5(model_file)
-  
   testing_data <- bake(rec, testing(data))
   x_test_tbl <- testing_data %>%
     select(-Churn) %>%
@@ -109,18 +112,13 @@ confusion_matrix <- function(data, rec, model_file) {
 }
 
 compare_models <- function(...) {
-  batch_sizes <- match.call()[-1] %>%
-    as.character() %>%
-    gsub(pattern = "conf_", replacement = "")
+  name <- match.call()[-1] %>%
+    as.character()
   df <- map_df(list(...), summary) %>%
     filter(.metric %in% c("accuracy", "sens", "spec")) %>%
-    mutate(
-      batch_size = rep(batch_sizes, each = n() / length(batch_sizes))
-    ) %>%
+    mutate(name = rep(name, each = n() / length(name))) %>%
     rename(metric = .metric, estimate = .estimate)
   ggplot(df) +
-    geom_line(
-      aes(x = metric, y = estimate, color = batch_size, group = batch_size)
-    ) +
-    theme_gray(16)
+    geom_line(aes(x = metric, y = estimate, color = name, group = name)) +
+    theme_gray(24)
 }

@@ -4,26 +4,21 @@
 # to avoid a potential serialization bottleneck:
 # https://github.com/richfitz/storr/issues/77#issuecomment-476275570
 
-batch_sizes <- c(16, 32)
-model_files <- paste0("model_", batch_sizes, ".h5")
+activations <- c("relu", "sigmoid")
 
 plan <- drake_plan(
   data = read_csv(file_in("data/customer_churn.csv"), col_types = cols()) %>%
     initial_split(prop = 0.3),
   rec = prepare_recipe(data),
   history = target(
-    train_model(data, rec, batch_size, file_out(model_file)),
-    transform = map(
-      batch_size = !!batch_sizes,
-      model_file = !!model_files,
-      .id = batch_size
-    )
+    train_model(data, rec, file_out(!!paste0(act, ".h5")), act1 = act),
+    transform = map(act = !!activations)
   ),
   conf = target(
-    confusion_matrix(data, rec, file_in(model_file)),
-    transform = map(model_file, .id = batch_size)
+    confusion_matrix(data, rec, file_in(!!paste0(act, ".h5"))),
+    transform = map(act)
   ),
-  comparison = target(
+  metrics = target(
     compare_models(conf),
     transform = combine(conf)
   )
