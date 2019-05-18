@@ -15,3 +15,16 @@ source("R/plan.R")
 # make(plan, parallelism = "clustermq", jobs = 2)
 
 make(plan)
+
+# Too slow? Maybe drake is taking too long to store your models.
+# How much runtime overhead do we suffer?
+
+build <- build_times(model_relu, type = "build")$elapsed
+command <- build_times(model_relu, type = "command")$elapsed
+overhead <- sprintf("%.3f%%", 100 * (build - command) / build)
+print(overhead)
+
+# For this example, it is not so bad.
+# But if it takes too long to fit deep learning models
+# in your application, see 
+# https://github.com/wlandau/drake-examples/tree/master/customer-churn-fast
