@@ -32,13 +32,11 @@ overhead <- function(n, max_deps) {
     assign(x = digest::digest(i), value = 1, envir = e)
   }
   rprof_file <- tempfile()
-  plan <- create_plan(n = 5, max_deps = 5)
+  plan <- create_plan(n = n, max_deps = max_deps)
   Rprof(filename = rprof_file)
-  for (i in 1:100) {
-    make(plan)
-    unlink(".drake", recursive = TRUE, force = TRUE)
-  }
+  make(plan)
   Rprof(NULL)
+  unlink(".drake", recursive = TRUE, force = TRUE)
   data <- read_rprof(rprof_file)
   write_pprof(data, proto_file(n, max_deps))
 }
@@ -64,4 +62,4 @@ vis <- function(n, max_deps, ip_listen = "localhost", port = "8080") {
 }
 
 overhead(n, max_deps)
-vis(n, max_deps, ip_listen = "localhost", port = "8080")
+vis(n, max_deps, ip_listen = "localhost", port = "8081")
