@@ -36,7 +36,6 @@ Depends:
   ggplot2,
   gridExtra,
   igraph,
-  jointprof,
   keras,
   kernlab,
   kknn,
@@ -46,7 +45,6 @@ Depends:
   mlr,
   parallelMap,
   pkgconfig,
-  profile,
   purrr,
   R.utils,
   readxl,
@@ -63,7 +61,5 @@ Depends:
   tidyverse,
   visNetwork,
   yardstick
-Remotes:
-  r-prof/jointprof
 Encoding: UTF-8
 LazyData: true
