@@ -16,7 +16,12 @@ Authors@R: c(
   ))
 Description: Example workflows for the drake R package
 License: GPL-3
-Depends: 
+SystemRequirements:
+  Python (>= 2.7.0),
+  TensorFlow (https://www.tensorflow.org/),
+  Keras >= 2.0 (https://keras.io),
+  ZeroMQ >= 3.0.0: libzmq3-dev (deb) or zeromq-devel (rpm)
+Depends:
   biglm,
   cranlogs,
   DBI,
@@ -58,5 +63,7 @@ Depends:
   tidyverse,
   visNetwork,
   yardstick
+Remotes:
+  r-prof/jointprof
 Encoding: UTF-8
 LazyData: true
