@@ -1,8 +1,18 @@
 [![travis](https://travis-ci.org/wlandau/drake-examples.svg?branch=master)](https://travis-ci.org/wlandau/drake-examples)
+[![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/master?urlpath=rstudio)
 
 # `drake` examples
 
-This repository is part of a community effort to collect, curate, and share publicly available examples of data analysis projects powered by the  [`drake` R package](https://github.com/ropensci/drake). Each folder is its own example with a self-sufficient set of code and data files. Eventually, you will be able to download individual examples using [`drake`](https://github.com/ropensci/drake) itself.
+This repository is part of a community effort to collect, curate, and share publicly available examples of data analysis projects powered by the  [`drake` R package](https://github.com/ropensci/drake). Each folder is its own example with a self-sufficient set of code and data files.
+
+# Run in a browser
+
+Click this badge to open the examples in RStudio through your browser: [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/master?urlpath=rstudio)
+
+
+# Run locally
+
+You can download example files and run them locally with [`drake`](https://github.com/ropensci/drake) itself.
 
 ```r
 # Install and load drake.
