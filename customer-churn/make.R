@@ -7,9 +7,13 @@ source("R/plan.R")
 
 # Optional: submit deep learning models to a Grid Engine cluster.
 # Other resource managers like SLURM are similar.
-# options(clustermq.scheduler = "sge", clustermq.template = "sge_clustermq.tmpl")
+# options(
+#   clustermq.scheduler = "sge",
+#   clustermq.template = "sge_clustermq.tmpl"
+# )
 #
-# Optional: avoid submitting non-model targets to the cluster (requires drake >= 7.1.0).
+# Optional: avoid submitting non-model targets to the cluster
+#   (requires drake >= 7.1.0).
 # plan$hpc <- grepl("^model_", plan$target)
 #
 # make(plan, parallelism = "clustermq", jobs = 2)
