@@ -5,6 +5,7 @@ Docker-psock.zip
 fcd.zip
 gapminder.zip
 gsp.zip
+hpc-profiling.zip
 lfs.zip
 main.zip
 mlr-slurm.zip
