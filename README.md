@@ -46,8 +46,9 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 - `slurm`: similar to `sge`, but for [SLURM](https://slurm.schedmd.com).
 - `torque`: similar to `sge`, but for [TORQUE](http://www.adaptivecomputing.com/products/open-source/torque/).
 
-# Development examples
+# Example for developing `drake`
 
+- `hpc-profiling: an example with a small number of medium-ish-sized datasets. The goal is to assess how long it takes (relatively speaking) to shuffle data around hpc workers.
 - `overhead`: an example explicitly designed to maximize strain on `drake`'s internals. The purpose is to support profiling studies to speed up `drake`.
 
 # Demonstrations of specific features
