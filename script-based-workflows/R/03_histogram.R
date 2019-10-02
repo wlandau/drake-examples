@@ -1,7 +1,7 @@
 # A plot of the resulting munged data will be generated and saved in the data
 # folder for later use
 
-munged_data <- readRDS(here("data","munged_data.RDS"))
+munged_data <- readRDS("data/munged_data.RDS")
 
 gg <- munged_data %>% 
   ggplot() +
@@ -14,8 +14,8 @@ gg <- munged_data %>%
     theme_gray(20)
 
 ggsave(
-  filename = here("data","Petal_Width_vs_Species.PNG"),
+  filename = "data/Petal_Width_vs_Species.PNG",
   plot = gg
   )
 
-saveRDS(gg, here("data","Petal_Width_vs_Species.RDS"))
+saveRDS(gg, "data/Petal_Width_vs_Species.RDS")

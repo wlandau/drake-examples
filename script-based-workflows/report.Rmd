@@ -9,10 +9,10 @@ Run `make.R` to generate the output `report.pdf` and its dependencies. Because w
 ```{r content}
 library(drake)
 
-fit<- readRDS(here("data","fit.RDS"))
+fit <- readRDS("data/fit.RDS")
 print(fit)
 
-readRDS(here("data","Petal_Width_vs_Species.RDS"))
+readRDS("data/Petal_Width_vs_Species.RDS")
 ```
 
 More:
