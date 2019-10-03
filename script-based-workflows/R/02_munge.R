@@ -6,4 +6,3 @@ munged_data <- raw_data %>%
   mutate(Species = forcats::fct_inorder(Species))
 
 saveRDS(munged_data, "data/munged_data.RDS")
-

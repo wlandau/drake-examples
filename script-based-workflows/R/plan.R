@@ -14,5 +14,5 @@ my_plan <- drake_plan(
   munged_data = do_munge(raw_data),
   hist        = do_histogram(munged_data),
   fit         = do_regression(munged_data),
-  report      = generate_report(hist,fit)
+  report      = generate_report(hist, fit)
 )

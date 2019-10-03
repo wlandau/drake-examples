@@ -3,7 +3,7 @@
 
 munged_data <- readRDS("data/munged_data.RDS")
 
-gg <- munged_data %>% 
+gg <- munged_data %>%
   ggplot() +
     geom_histogram(
       aes(

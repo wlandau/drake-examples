@@ -3,6 +3,6 @@
 
 munged_data <- readRDS("data/munged_data.RDS")
 
-fit = lm(Sepal.Width ~ Petal.Width + Species, munged_data)
+fit <- lm(Sepal.Width ~ Petal.Width + Species, munged_data)
 
 saveRDS(fit, "data/fit.RDS")
