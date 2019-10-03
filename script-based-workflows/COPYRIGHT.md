@@ -1,1 +1,1 @@
-Copyright Eli Lilly and Company
+Copyright Ellis Hughes
