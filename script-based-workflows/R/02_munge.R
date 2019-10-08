@@ -1,4 +1,5 @@
-# The factor order in the `Species` field will be re-ordered
+# Changes the factor order in the `Species` field to order of appearance
+# in the field rather than alphabetically
 
 raw_data <- readRDS("data/loaded_data.RDS")
 

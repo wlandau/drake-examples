@@ -1,5 +1,5 @@
-# This script will read in the data from the excel file and generate an RDS for 
-# use later on in the script. Normally more would be done upon loading the data
+# This script reads in the data from the excel file and generates an RDS for 
+# use later on in the workflow
 
 raw_data <- readxl::read_excel("raw_data.xlsx")
 
