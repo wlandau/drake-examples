@@ -1,5 +1,5 @@
 
-#Load the scripts into functions via `code_to_function()`
+# Load the scripts into functions via `code_to_function()`
 
 load_data <- code_to_function("R/01_data.R")
 do_munge <- code_to_function("R/02_munge.R")
