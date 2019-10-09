@@ -1,4 +1,4 @@
-# Generate a historgram plot of the nunged data and save in the data
+# Generate a historgram plot of the munged data and save in the data
 # folder for later use
 
 munged_data <- readRDS("data/munged_data.RDS")
