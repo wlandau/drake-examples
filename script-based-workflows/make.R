@@ -5,9 +5,9 @@
 # Read about it at
 # https://ropenscilabs.github.io/drake-manual/script_based_workflows.html
 
-source("R/packages.R")  # Load all the packages you need.
-source("R/functions.R") # convert the scripts to functions
-source("R/plan.R")      # Build your workflow plan data frame.
+source("R/drake/packages.R")  # Load all the packages you need.
+source("R/drake/functions.R") # convert the scripts to functions
+source("R/drake/plan.R")      # Build your workflow plan data frame.
 
 # Now it is time to actually run your project.
 make(my_plan)
