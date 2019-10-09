@@ -12,6 +12,7 @@ mlr-slurm.zip
 mtcars.zip
 overhead.zip
 packages.zip
+script-based-workflows.zip
 sge.zip
 slurm.zip
 torque.zip
