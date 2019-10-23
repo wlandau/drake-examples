@@ -15,7 +15,9 @@ gg <- munged_data %>%
 
 ggsave(
   filename = "data/Petal_Width_vs_Species.PNG",
-  plot = gg
-  )
+  plot = gg,
+  width = 6,
+  height = 6
+)
 
 saveRDS(gg, "data/Petal_Width_vs_Species.RDS")
