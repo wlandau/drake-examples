@@ -8,7 +8,6 @@ The goal is to identify and reduce `drake`'s overhead.
 - [`RProtoBuf`](https://github.com/eddelBuettel/RProtoBuf)
 - [Go](https://golang.org)
 - [`pprof`](https://github.com/google/pprof)
-- [`gperftools`](https://github.com/gperftools/gperftools)
 
 # Usage
 
