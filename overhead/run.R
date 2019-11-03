@@ -1,4 +1,24 @@
-# Profile the overhead incurred by drake on a large example.
+source("prof.R")
+
+plan <- data.frame(
+  target = "target_1",
+  command = "1",
+  stringsAsFactors = FALSE
+)
+for (i in seq_len(n - 1) + 1){
+  target <- paste0("target_", i)
+  dependencies <- paste0("target_", tail(seq_len(i - 1), max_deps))
+  command <- paste0(
+    "if(FALSE) loadd(",
+    paste0(dependencies, collapse = ", "),
+    ")"
+  )
+  plan <- rbind(
+    plan,
+    data.frame(target = target, command = command, stringsAsFactors = FALSE)
+  )
+}
+plan
 
 n <- 4096L
 max_deps <- as.integer(sqrt(n))
@@ -12,25 +32,7 @@ library(profile)
 # among all the targets (maximum possible edges)
 # For i = 2, ..., n, target i depends on targets 1 through i - 1.
 create_plan <- function(n, max_deps) {
-  plan <- data.frame(
-    target = "target_1",
-    command = "1",
-    stringsAsFactors = FALSE
-  )
-  for (i in seq_len(n - 1) + 1){
-    target <- paste0("target_", i)
-    dependencies <- paste0("target_", tail(seq_len(i - 1), max_deps))
-    command <- paste0(
-      "if(FALSE) loadd(",
-      paste0(dependencies, collapse = ", "),
-      ")"
-    )
-    plan <- rbind(
-      plan,
-      data.frame(target = target, command = command, stringsAsFactors = FALSE)
-    )
-  }
-  plan
+  
 }
 
 proto_file <- function(n, max_deps) {

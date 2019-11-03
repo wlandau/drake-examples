@@ -1,17 +1,27 @@
-This is a profiling study of `drake`. In order to isolate and measure overhead, the example `drake` project has many targets and minimal work within each target.
+# Profiling studies
 
-## Main profiling workflow
+The goal is to identify and reduce `drake`'s overhead.
 
-Run `Rscript run.R` to profile [`drake`](https://github.com/ropensci/drake) and visualize the profiling results in a local interactive web server.
+# Requirements
 
-## Files
+- Packages in `R/packages.R`.
+- [`RProtoBuf`](https://github.com/eddelBuettel/RProtoBuf)
+- [Go](https://golang.org)
+- [`pprof`](https://github.com/google/pprof)
+- [`gperftools`](https://github.com/gperftools/gperftools)
 
-- `run.R`: Run the profiling study and generate `*.proto` files for [`pprof`](https://github.com/google/pprof).
-- `makefile.R`: Benchmark GNU Make on a similar workflow. This would be the performance of `drake` in an ideal world.
+# Usage
 
-## Dependencies
+1. Run one of the workflow scripts in the section below.
+2. Look for the URL in the console messages, e.g. `local pprof server: http://localhost:50982`.
+3. Navigate a browser to the URL you found, e.g. `http://localhost:50982`.
+4. Navigate to the flame graph ("view" menu on the upper left) and look for bottlenecks. Click and hover to interact with the graph.
 
-- [`drake`](https://github.com/ropensci/drake)
-- [`jointprof`](https://github.com/r-prof/jointprof) and [its dependencies](https://r-prof.github.io/jointprof/#installation), including [Go](https://golang.org)), [`pprof`](https://github.com/google/pprof), and [`gperftools`](https://github.com/gperftools/gperftools).
-- [`profile`](https://github.com/r-prof/profile).
-- [`RProtoBuf`](https://github.com/eddelBuettel/RProtoBuf) and [its dependencies](https://github.com/eddelBuettel/RProtoBuf#installation).
+![](figures/flame.png)
+
+# Workflows
+
+- `connected.R`: a plan with a highly connected graph.
+- `makefile.R`: like `connected.R`, but with a `Makefile` instead of `drake`.
+- `dynamic.R`: dynamic branching with many sub-targets.
+- `static.R`: static branching comparison for `dynamic.R`.
