@@ -1,5 +1,5 @@
 # See the full tutorial at
-# https://ropenscilabs.github.io/drake-manual/packages.html.
+# https://books.ropensci.org/drake/packages.html.
 
 source("R/packages.R")  # Load all the packages you need.
 source("R/functions.R") # Load all the functions into your environment.

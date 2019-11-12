@@ -24,8 +24,8 @@ This example is tailored to work with SLURM.
 If you want to use a different scheduler (SGE, PBS, LSF), you only need to use the respective template and tweak it.
 `drake` uses `clustermq` under the hood for job forwarding.
 Please take a look [here](https://github.com/mschubert/clustermq/wiki/Configuration#setting-up-the-scheduler) on how to set up templates for different schedulers.
-Also make sure to read the section about [High-Performance-Computing](https://ropenscilabs.github.io/drake-manual/hpc.html) in the `drake` manual for further information.
+Also make sure to read the section about [High-Performance-Computing](https://books.ropensci.org/drake/hpc.html) in the `drake` manual for further information.
 
 # Additional resources
 
-See chapters [Projects](https://ropenscilabs.github.io/drake-manual/projects.html) and [Batch mode](https://ropenscilabs.github.io/drake-manual/hpc.html#batch-mode-for-long-workflows) in the `drake` manual for more information on structuring your own project and dealing with long-running jobs.
+See chapters [Projects](https://books.ropensci.org/drake/projects.html) and [Batch mode](https://books.ropensci.org/drake/hpc.html#batch-mode-for-long-workflows) in the `drake` manual for more information on structuring your own project and dealing with long-running jobs.

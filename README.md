@@ -53,7 +53,8 @@ Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-e
 
 # Demonstrations of specific features
 
-- `code_to_plan`: a demonstration of `drake`'s `code_to_plan()` function, which can turn ordinary quoted code, R scripts, and `knitr` / R Markdown reports into `drake` [workflow plan data frames](https://ropenscilabs.github.io/drake-manual/plans.html).
+- `script-based-workflows`: demonstrates how to adapt `drake` to an imperative script-based project.
+- `code_to_plan`: questioning. Refer to `script-based-workflows` instead.
 
 # Real-world examples outside this repo
 

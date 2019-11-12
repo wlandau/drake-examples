@@ -1,4 +1,4 @@
-# Visit https://ropenscilabs.github.io/drake-manual/plans.html
+# Visit https://books.ropensci.org/drake/plans.html
 # to learn about workflow plan data frames in drake.
 
 # Let's begin with the main example (drake_example("main")).

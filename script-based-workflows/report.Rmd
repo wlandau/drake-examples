@@ -17,5 +17,5 @@ readRDS("data/Petal_Width_vs_Species.RDS")
 
 More:
 
-- Walkthrough: [this chapter of the user manual](https://ropenscilabs.github.io/drake-manual/script-based-workflows.html)
+- Walkthrough: [this chapter of the user manual](https://books.ropensci.org/drake/script-based-workflows.html)
 - Code: `drake_example("script-based-workflows")`

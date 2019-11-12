@@ -3,7 +3,7 @@
 
 # drake >= 7.6.2.9000 has a new interface for handling script-based plans.
 # Read about it at
-# https://ropenscilabs.github.io/drake-manual/script_based_workflows.html
+# https://books.ropensci.org/drake/script_based_workflows.html
 
 source("R/drake/packages.R")  # Load all the packages you need.
 source("R/drake/functions.R") # convert the scripts to functions

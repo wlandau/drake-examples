@@ -15,5 +15,5 @@ readd(hist)
 
 More:
 
-- Walkthrough: [this chapter of the user manual](https://ropenscilabs.github.io/drake-manual/intro.html)
+- Walkthrough: [this chapter of the user manual](https://books.ropensci.org/drake/walkthrough.html)
 - Code: `drake_example("main")`
