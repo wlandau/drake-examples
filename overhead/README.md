@@ -2,12 +2,19 @@
 
 The goal is to identify and reduce `drake`'s overhead.
 
-# Requirements
+# System requirements
 
-- Packages in `R/packages.R`.
-- [`RProtoBuf`](https://github.com/eddelBuettel/RProtoBuf)
-- [Go](https://golang.org)
-- [`pprof`](https://github.com/google/pprof)
+## Software
+
+1. Packages in `R/packages.R`. Windows users can skip `jointprof`. 
+2. [Go](https://golang.org)
+3. [`pprof`](https://github.com/google/pprof). 
+4. [Graphviz](https://graphviz.gitlab.io/download/)
+
+## Environment variables
+
+1. `GOPATH`. See the Go documentation for details.
+2. `PATH`. Must include the file paths to the executables of `pprof` and Graphviz.
 
 # Usage
 
