@@ -1,5 +1,5 @@
 # List of learning tasks
-tasks <- list(iris.task, sonar.task)
+tasks <- list(mtcars.task, sonar.task)
 
 # Tune wrapper for SVM
 ps_svm <- makeParamSet(

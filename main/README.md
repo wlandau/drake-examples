@@ -1,1 +1,1 @@
-This is the example from [this chapter of the user manual](https://books.ropensci.org/drake/walkthrough.html). Originally written by [Kirill Müller](https://github.com/krlmlr).
+`drake`'s main bare-bones introductory example, originally written by [Kirill Müller](https://github.com/krlmlr) and modified by [Will Landau](https://github.com/wlandau). Now based on R's built-in `airquality` dataset.

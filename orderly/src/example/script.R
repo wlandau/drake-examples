@@ -1,4 +1,5 @@
 library(drake)
+library(storr)
 
 save_bar_plot <- function(data, file) {
   png(file)
@@ -13,4 +14,5 @@ plan <- drake_plan(
   bar_plot = save_bar_plot(bar_data, file_out("mygraph.png"))
 )
 
+cache <- storr_rds("../.drake")
 make(plan)
