@@ -4,6 +4,6 @@
 raw_data <- readRDS("data/loaded_data.RDS")
 
 munged_data <- raw_data %>%
-  mutate(Species = forcats::fct_inorder(Species))
+  mutate(Ozone = replace_na(Ozone, mean(Ozone, na.rm = TRUE)))
 
 saveRDS(munged_data, "data/munged_data.RDS")

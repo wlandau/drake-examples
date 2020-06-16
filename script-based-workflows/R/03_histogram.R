@@ -3,18 +3,15 @@
 
 munged_data <- readRDS("data/munged_data.RDS")
 
-gg <- ggplot(munged_data) +
-  geom_histogram(
-    aes(x = Petal.Width, fill = Species),
-    binwidth = 0.25
-  ) +
-  theme_gray(20)
+gg <-  ggplot(munged_data) +
+  geom_histogram(aes(x = Ozone), bindwidth = 10) +
+  theme_gray(24)
 
 ggsave(
-  filename = "data/Petal_Width_vs_Species.PNG",
+  filename = "data/ozone.PNG",
   plot = gg,
   width = 6,
   height = 6
 )
 
-saveRDS(gg, "data/Petal_Width_vs_Species.RDS")
+saveRDS(gg, "data/ozone.RDS")

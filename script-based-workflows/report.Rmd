@@ -1,21 +1,19 @@
 ---
 title: "Example R Markdown drake file target"
-author: Ellis Hughes, Will Landau, and Kirill Müller
+author: Will Landau and Kirill Müller
 output: html_document
 ---
 
-Run `make.R` to generate the output `report.pdf` and its dependencies. Because we use `code_to_function()` to render this, `drake` will know `report.pdf` depends on targets `fit`, and `hist`.
+Run `make.R` to generate the output `report.pdf` and its dependencies. Because we use `loadd()` and `readd()` below, `drake` knows `report.pdf` depends on targets `fit`, and `hist`.
 
 ```{r content}
 library(drake)
-
-fit <- readRDS("data/fit.RDS")
+loadd(fit)
 print(fit)
-
-readRDS("data/Petal_Width_vs_Species.RDS")
+readd(hist)
 ```
 
 More:
 
-- Walkthrough: [this chapter of the user manual](https://books.ropensci.org/drake/script-based-workflows.html)
-- Code: `drake_example("script-based-workflows")`
+- Walkthrough: [this chapter of the user manual](https://books.ropensci.org/drake/walkthrough.html)
+- Code: `drake_example("main")`
