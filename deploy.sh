@@ -5,7 +5,7 @@ git config --global user.email "will.landau@gmail.com"
 git config --global user.name "wlandau"
 
 make
-git clone -b gh-pages git@github.com:wlandau/drake-examples gh-pages
+git clone -b gh-pages https://${GITHUB_PAT}@github.com/wlandau/drake-examples gh-pages
 mv README.md gh-pages
 ls *.zip > gh-pages/examples.md
 mv *.zip gh-pages
