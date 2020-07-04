@@ -9,8 +9,7 @@ source("R/plan.R")      # Build your workflow plan data frame.
 ls()
 
 # Optionally plot the graph of your workflow.
-# config <- drake_config(plan) # nolint
-# vis_drake_graph(config)            # nolint
+# vis_drake_graph(plan)            # nolint
 
 # Now it is time to actually run your project.
 make(plan) # Or make(plan, jobs = 2), etc.
