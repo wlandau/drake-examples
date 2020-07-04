@@ -1,4 +1,3 @@
-[![travis](https://travis-ci.org/wlandau/drake-examples.svg?branch=master)](https://travis-ci.org/wlandau/drake-examples)
 [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/master?urlpath=rstudio)
 
 # `drake` examples
