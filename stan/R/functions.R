@@ -11,6 +11,7 @@
 #' library(rstan)
 #' compile_model("stan/model.stan")
 compile_model <- function(model) {
+  rstan_options(auto_write = TRUE)
   stan_model(model)
   path_ext_set(model, "rds")
 }
@@ -59,6 +60,7 @@ simulate_data <- function() {
 #' compiled <- compile_model("stan/model.stan")
 #' fit_model(compiled, simulate_data())
 fit_model <- function(compiled, data) {
+  rstan_options(auto_write = TRUE)
   output <- sampling(
     readRDS(compiled),
     list(x = data$x, y = data$y, n = nrow(data)),
