@@ -1,0 +1,7 @@
+options(tidyverse.quiet = TRUE)
+library(coda)
+library(drake)
+library(fs)
+library(rmarkdown)
+library(rstan)
+library(tidyverse)
