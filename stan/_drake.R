@@ -10,4 +10,9 @@ options(clustermq.scheduler = "multicore")
 # on a Sun Grid Engine cluster when running tar_make_clustermq().
 # options(clustermq.scheduler = "sge", clustermq.template = "sge.tmpl")
 
-drake_config(plan) # Use the jobs argument to choose the number of parallel workers.
+drake_config(
+  plan,
+  # parallelism = "clustermq", # Uncomment for parallel computing.
+  # jobs = 4, # Choose the number of parallel workers.
+  lock_envir = FALSE
+)
