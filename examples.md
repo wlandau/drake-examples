@@ -15,4 +15,5 @@ packages.zip
 script-based-workflows.zip
 sge.zip
 slurm.zip
+stan.zip
 torque.zip
