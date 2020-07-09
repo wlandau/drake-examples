@@ -1,19 +1,19 @@
 #' @title Compile a Stan model and return a path to the compiled model output.
-#' @description We return the path to the compiled Stan model so drake
-#'   can treat it as a dynamic file, which helps cue the downstream
-#'   model fitting when the file changes.
+#' @description We return the paths to the Stan model specification
+#'   and the compiled model file so `drake` can treat them as
+#'   dynamic files and compile the model if either file changes.
 #' @return Path to the compiled Stan model, which is just an RDS file.
 #'   To run the model, you can read this file into a new R session with
 #'   `readRDS()` and feed it to the `object` argument of `sampling()`.
-#' @param model Path to a Stan model file.
+#' @param model_file Path to a Stan model file.
 #'   This is a text file with the model spceification.
 #' @examples
 #' library(rstan)
 #' compile_model("stan/model.stan")
-compile_model <- function(model) {
+compile_model <- function(model_file) {
   rstan_options(auto_write = TRUE)
-  stan_model(model)
-  path_ext_set(model, "rds")
+  stan_model(model_file)
+  c(model_file, path_ext_set(model_file, "rds"))
 }
 
 #' @title Simulate data from the model.
@@ -57,13 +57,12 @@ simulate_data <- function() {
 #' library(coda)
 #' library(rstan)
 #' library(tibble)
-#' compiled <- compile_model("stan/model.stan")
-#' fit_model(compiled, simulate_data())
-fit_model <- function(compiled, data) {
-  rstan_options(auto_write = TRUE)
-  output <- sampling(
-    readRDS(compiled),
-    list(x = data$x, y = data$y, n = nrow(data)),
+#' compile_model("stan/model.stan")
+#' fit_model("stan/model.stan", simulate_data())
+fit_model <- function(model_file, data) {
+  output <- stan(
+    file = model_file,
+    data = list(x = data$x, y = data$y, n = nrow(data)),
     refresh = 0
   )
   mcmc_list <- As.mcmc.list(output)
