@@ -1,5 +1,5 @@
 plan <- drake_plan(
-  model_file = target(
+  model_files = target(
     compile_model("stan/model.stan"),
     format = "file",
     hpc = FALSE
@@ -14,7 +14,7 @@ plan <- drake_plan(
     format = "fst_tbl"
   ),
   fit = target(
-    fit_model(model_file[1], data),
+    fit_model(model_files[1], data),
     dynamic = map(data),
     format = "fst_tbl"
   ),
