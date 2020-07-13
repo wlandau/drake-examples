@@ -8,11 +8,11 @@
 #' @param model_file Path to a Stan model file.
 #'   This is a text file with the model spceification.
 #' @examples
+#' library(fs)
 #' library(rstan)
 #' compile_model("stan/model.stan")
 compile_model <- function(model_file) {
-  rstan_options(auto_write = TRUE)
-  stan_model(model_file)
+  stan_model(model_file, auto_write = TRUE, save_dso = TRUE)
   c(model_file, path_ext_set(model_file, "rds"))
 }
 
@@ -55,17 +55,23 @@ simulate_data <- function() {
 #'     the model needs reparameterization.
 #' @examples
 #' library(coda)
+#' library(fs)
 #' library(rstan)
 #' library(tibble)
 #' compile_model("stan/model.stan")
 #' fit_model("stan/model.stan", simulate_data())
 fit_model <- function(model_file, data) {
-  output <- stan(
-    file = model_file,
+  # From https://github.com/stan-dev/rstan/issues/444#issuecomment-445108185,
+  # we need each stanfit object to have its own unique name, so we create
+  # a special new environment for it.
+  tmp_envir <- new.env(parent = baseenv())
+  tmp_envir$model <- stan_model(model_file, auto_write = TRUE, save_dso = TRUE)
+  tmp_envir$fit <- sampling(
+    object = tmp_envir$model,
     data = list(x = data$x, y = data$y, n = nrow(data)),
     refresh = 0
   )
-  mcmc_list <- As.mcmc.list(output)
+  mcmc_list <- As.mcmc.list(tmp_envir$fit)
   samples <- as.data.frame(as.matrix(mcmc_list))
   beta_25 <- quantile(samples$beta, 0.25)
   beta_median <- quantile(samples$beta, 0.5)
