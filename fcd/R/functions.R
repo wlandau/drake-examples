@@ -53,20 +53,12 @@ fcd <- function(nPeople, pEdge, topN) {
 fcdSim <- function(nSims = 100, nPeople, pEdge, topN) {
   replicate(n = nSims, expr = fcd(nPeople, pEdge, topN)) %>%
     bind_rows() %>%
-    set_names(c(1:ncol(.))) %>%
+    set_names(c(seq_len(ncol(.)))) %>%
     tidyr::gather(key = "deg", value = "freq") %>%
     transmute(deg = as.numeric(deg), freq = as.numeric(freq)) %>%
     cbind(simRun = rep(c(1:nSims), max(.[, 1])), .) %>%
     arrange(deg, simRun) %>%
-    cbind(nPeople, pEdge, topN, .) # %>%
-  # select(deg, freq) %>%
-  # aggregate(freq ~ deg, data=., FUN=function(x) mean(x, na.rm = T)) %>%
-  # cbind(nPeople, pEdge, topN, .) %>%
-  # transmute(nPeople = as.factor(nPeople),
-  #           pEdge = as.factor(pEdge),
-  #           topN = as.factor(topN),
-  #           freq = as.numeric(freq),
-  #           deg = as.numeric(deg))
+    cbind(nPeople, pEdge, topN, .)
 }
 
 #####

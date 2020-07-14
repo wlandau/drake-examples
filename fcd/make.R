@@ -1,5 +1,5 @@
 # Chapter walkthrough forthcoming in drake manual
-# Fixed-Choice Design Simulation 
+# Fixed-Choice Design Simulation
 
 # Load our packages and supporting functions into our session.
 source("R/packages.R")
