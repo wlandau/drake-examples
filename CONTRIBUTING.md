@@ -2,7 +2,7 @@ Please feel free to discuss on the [issue tracker](https://github.com/wlandau/dr
  
 ## Code of conduct
  
-The environment for collaboration should be friendly, inclusive, respectful, and safe for everyone, so all participants must obey [this repository's code of conduct](https://github.com/wlandau/drake-examples/blob/master/CONDUCT.md).
+The environment for collaboration should be friendly, inclusive, respectful, and safe for everyone, so all participants must obey [this repository's code of conduct](https://github.com/wlandau/drake-examples/blob/main/CONDUCT.md).
 
 ## Project size
 

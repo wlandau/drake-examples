@@ -1,4 +1,4 @@
-[![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/master?urlpath=rstudio)
+[![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/main?urlpath=rstudio)
 
 # `drake` examples
 
@@ -6,7 +6,7 @@ This repository is part of a community effort to collect, curate, and share publ
 
 # Run in a browser
 
-Click this badge to open the examples in RStudio through your browser: [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/master?urlpath=rstudio)
+Click this badge to open the examples in RStudio through your browser: [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/main?urlpath=rstudio)
 
 
 # Run locally
@@ -26,7 +26,7 @@ list.files() # See the new 'main' folder
 
 # Contributing
 
-Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-examples/blob/master/CONTRIBUTING.md) and [`CONDUCT.md`](https://github.com/wlandau/drake-examples/blob/master/CONDUCT.md) for rules and instructions.
+Please read the top-level [`CONTRIBUTING.md`](https://github.com/wlandau/drake-examples/blob/main/CONTRIBUTING.md) and [`CONDUCT.md`](https://github.com/wlandau/drake-examples/blob/main/CONDUCT.md) for rules and instructions.
 
 # Introductory examples
 

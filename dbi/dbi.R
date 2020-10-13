@@ -25,7 +25,7 @@ cached(cache = cache)
 future::plan(future::multiprocess)
 
 # Make the targets in parallel
-# Below, `caching = "master"` ensures
+# Below, `caching = "main"` ensures
 # that only one process writes to the cache at a time.
 # This is key for non-default non-`storr_rds()` caches.
 make(
@@ -33,7 +33,7 @@ make(
   cache = cache,
   parallelism = "future",
   jobs = 2,
-  caching = "master" # Important for DBI caches!
+  caching = "main" # Important for DBI caches!
 )
 
 # Disconnect from the cache.
