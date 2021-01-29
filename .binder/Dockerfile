@@ -44,4 +44,4 @@ COPY . ${HOME}
 RUN chown -R ${NB_USER} ${HOME}
 USER ${NB_USER}
 
-RUN wget https://github.com/wlandau/drake-examples/raw/master/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2019-06-21/')); devtools::install_deps()"
+RUN wget https://github.com/wlandau/drake-examples/raw/main/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2019-06-21/')); devtools::install_deps()"
