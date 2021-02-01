@@ -2,7 +2,7 @@
 
 # Consider targets
 
-The [`targets`](https://docs.ropensci.org/targets) R package is the long-term successor of `drake`, and it is more robust and easier to use. Please visit <https://books.ropensci.org/targets/drake.html> for full context and advice on transitioning.
+The [`targets`](https://docs.ropensci.org/targets) R package is the long-term successor of `drake`, and it is more robust and easier to use. Please visit <https://books.ropensci.org/targets/drake.html> for full context and advice on transitioning. Example projects with `targets` are linked from <https://docs.ropensci.org/targets/#example-projects>.
 
 # drake examples
 
