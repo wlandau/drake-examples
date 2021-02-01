@@ -1,6 +1,10 @@
 [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/wlandau/drake-examples/main?urlpath=rstudio)
 
-# `drake` examples
+# Consider targets
+
+The [`targets`](https://docs.ropensci.org/targets) R package is the long-term successor of `drake`, and it is more robust and easier to use. Please visit <https://books.ropensci.org/targets/drake.html> for full context and advice on transitioning.
+
+# drake examples
 
 This repository is part of a community effort to collect, curate, and share publicly available examples of data analysis projects powered by the  [`drake` R package](https://github.com/ropensci/drake). Each folder is its own example with a self-sufficient set of code and data files.
 
