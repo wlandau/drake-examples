@@ -14,7 +14,7 @@ This report contains the validation results of a small Bayesian hierarchical mod
 1. We can run the report by itself if the targets are already in the `.drake/` cache.
 
 ```{r}
-library(targets)
+library(drake)
 loadd(fit)
 ```
 
